@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>诸笑云的博客</title>
+  <title>PHP开发环境搭建(Ubuntu Linux) | 诸笑云的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="zhuxiaoyun">
-<meta property="og:type" content="website">
-<meta property="og:title" content="诸笑云的博客">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。 123456               ---------               -----------          ---------浏览器-------&amp;gt; | Nginx | ---FastCGI--&amp;gt; | P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PHP开发环境搭建(Ubuntu Linux)">
+<meta property="og:url" content="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/index.html">
 <meta property="og:site_name" content="诸笑云的博客">
-<meta property="og:description" content="zhuxiaoyun">
+<meta property="og:description" content="本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。 123456               ---------               -----------          ---------浏览器-------&amp;gt; | Nginx | ---FastCGI--&amp;gt; | P">
+<meta property="og:updated_time" content="2017-05-27T08:16:35.927Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="诸笑云的博客">
-<meta name="twitter:description" content="zhuxiaoyun">
+<meta name="twitter:title" content="PHP开发环境搭建(Ubuntu Linux)">
+<meta name="twitter:description" content="本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。 123456               ---------               -----------          ---------浏览器-------&amp;gt; | Nginx | ---FastCGI--&amp;gt; | P">
   
     <link rel="alternate" href="/atom.xml" title="诸笑云的博客" type="application/atom+xml">
   
@@ -66,9 +67,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-php-develop-environment-for-linux" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-php-develop-environment-for-linux" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/27/php-develop-environment-for-linux/" class="article-date">
   <time datetime="2017-05-27T08:15:43.000Z" itemprop="datePublished">2017-05-27</time>
@@ -81,8 +80,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/php-develop-environment-for-linux/">PHP开发环境搭建(Ubuntu Linux)</a>
+    <h1 class="article-title" itemprop="name">
+      PHP开发环境搭建(Ubuntu Linux)
     </h1>
   
 
@@ -152,138 +151,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-PHP获取时间的坑" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/27/PHP获取时间的坑/" class="article-date">
-  <time datetime="2017-05-27T06:25:31.000Z" itemprop="datePublished">2017-05-27</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/27/PHP获取时间的坑/">PHP获取时间的坑</a>
-    </h1>
+    <a href="/2017/05/27/PHP获取时间的坑/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">PHP获取时间的坑</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="external">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
-<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</div><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
-<p>Warning：请注意，这里有一个坑，当当前月为大月时，当天的时间为最后一天，如2017-05-31，加一个月取第一天并不会得到下一个月的第一天，而会顺延到下下月的某一天（取决于多的天数），所以正确的应该是，当前月第一天加一个月<br>以下是正确的写法：</p>
-<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="external">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/" data-id="cj370m9x10000yfjjwufz0s2j" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/12/first-blog/" class="article-date">
-  <time datetime="2017-05-12T02:45:11.000Z" itemprop="datePublished">2017-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/12/first-blog/">我的第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>你好，欢迎来到我的个人技术博客。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cj370m9x60001yfjjhsgl1cio" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/12/hello-world/" class="article-date">
-  <time datetime="2017-05-12T02:40:49.784Z" itemprop="datePublished">2017-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/12/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/12/hello-world/" data-id="cj370m9x90002yfjjejoe08ib" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 </section>
         
