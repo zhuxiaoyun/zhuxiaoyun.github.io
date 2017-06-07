@@ -3,7 +3,8 @@ title: 多PC同步管理博客
 date: 2017-06-07 17:14:53
 tags:
 ---
-## 多PC同步管理博客
+链接：http://www.imooc.com/article/9707?block_id=tuijian_wz
+来源：慕课网
 
 ### A电脑备份博客内容到github
 1. 配置.gitignore文件。进入博客目录文件夹下，找到此文件，用sublime text 打开，在最后增加两行内容/.deploy_git和/public
