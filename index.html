@@ -71,7 +71,7 @@
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/07/hello-world/" class="article-date">
-  <time datetime="2017-06-07T07:38:44.321Z" itemprop="datePublished">2017-06-07</time>
+  <time datetime="2017-06-07T09:15:07.325Z" itemprop="datePublished">2017-06-07</time>
 </a>
     
   </div>
@@ -104,7 +104,54 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/07/hello-world/" data-id="cj3mogpek0001zxjjg707mwpz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/07/hello-world/" data-id="cj3ms4b2t00024ejjm7fhznwe" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-多PC同步管理博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/07/多PC同步管理博客/" class="article-date">
+  <time datetime="2017-06-07T09:14:53.000Z" itemprop="datePublished">2017-06-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/07/多PC同步管理博客/">多PC同步管理博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="多PC同步管理博客"><a href="#多PC同步管理博客" class="headerlink" title="多PC同步管理博客"></a>多PC同步管理博客</h2><h3 id="A电脑备份博客内容到github"><a href="#A电脑备份博客内容到github" class="headerlink" title="A电脑备份博客内容到github"></a>A电脑备份博客内容到github</h3><ol>
+<li>配置.gitignore文件。进入博客目录文件夹下，找到此文件，用sublime text 打开，在最后增加两行内容/.deploy_git和/public</li>
+<li>初始化仓库。在博客根目录下，在git bash下依次执行git init和git remote add origin <server> <server>为远程仓库地址。</server></server></li>
+<li>同步到远程仓库。gitbash下依次执行以下命令</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add . <span class="comment">#添加目录下所有文件 </span></div><div class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交并添加更新说明 </span></div><div class="line">$ git push -u origin master <span class="comment">#推送更新到远程仓库</span></div></pre></td></tr></table></figure>
+<h3 id="B电脑拉下远程仓库文件"><a href="#B电脑拉下远程仓库文件" class="headerlink" title="B电脑拉下远程仓库文件"></a>B电脑拉下远程仓库文件</h3><p>在B电脑上同样先安装好node、git、ssh、hexo，然后建好hexo文件夹，安装好插件，（然后选做：将备份到远程仓库的文件及文件夹删除），然后执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ git remote add origin &lt;server&gt;</div><div class="line">$ git fetch --all</div><div class="line">$ git reset --hard origin/master</div></pre></td></tr></table></figure>
+<h3 id="发布博客后同步"><a href="#发布博客后同步" class="headerlink" title="发布博客后同步"></a>发布博客后同步</h3><p>在B电脑发布完博客之后，记得将博客备份同步到远程仓库<br>执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"><span class="comment">#可以用git master 查看更改内容</span></div><div class="line">$ git commit -m <span class="string">"更新信息"</span></div><div class="line">$ git push -u origin master <span class="comment">#以后每次提交可以直接git push</span></div></pre></td></tr></table></figure>
+<h3 id="平时同步管理"><a href="#平时同步管理" class="headerlink" title="平时同步管理"></a>平时同步管理</h3><p>每次想写博客时，先执行：git pull进行同步更新。发布完文章后同样按照上面的 发布博客后同步 同步到远程仓库。</p>
+<h3 id="平时常用命令整理"><a href="#平时常用命令整理" class="headerlink" title="平时常用命令整理"></a>平时常用命令整理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git pull <span class="comment">#同步更新</span></div><div class="line">$ hexo new post <span class="string">"新建文章"</span> <span class="comment">#简写形式 hexo n "新建文章"</span></div><div class="line">$ hexo clean <span class="comment">#清除旧的public文件夹</span></div><div class="line">$ hexo generate <span class="comment">#生成静态文件 简写形式 hexo g</span></div><div class="line">$ hexo deploy <span class="comment">#发布到github上 简写形式 hexo d</span></div><div class="line">$ git add . <span class="comment">#添加更改文件到缓存区</span></div><div class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交到本地仓库</span></div><div class="line">$ git push -u origin master <span class="comment">#推送到远程仓库进行备份</span></div></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/06/07/多PC同步管理博客/" data-id="cj3ms4b2w00044ejjhx8169ox" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,7 +239,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/" data-id="cj3mogpen0002zxjj7ajqoxqo" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/" data-id="cj3ms4b2v00034ejj2o4g8m0h" class="article-share-link">Share</a>
       
       
     </footer>
@@ -238,7 +285,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/" data-id="cj3mogpeo0003zxjjj0ekdvfl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/" data-id="cj3ms4b2l00004ejj90bckfyd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -275,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cj3mogpef0000zxjjsq0hpxty" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cj3ms4b2r00014ejjqgkzcow7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -316,6 +363,10 @@
         
           <li>
             <a href="/2017/06/07/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/07/多PC同步管理博客/">多PC同步管理博客</a>
           </li>
         
           <li>
