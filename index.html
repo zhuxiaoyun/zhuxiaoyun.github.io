@@ -68,6 +68,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-php-isset-empty" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/07/07/php-isset-empty/" class="article-date">
+  <time datetime="2017-07-07T01:04:20.000Z" itemprop="datePublished">2017-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/07/07/php-isset-empty/">PHP语言-isset &amp; empty</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>php的坑<br>程序中经常会使用isset，empty判断数组中的某个key是否存在，有值。数组使用这两个api肯定没有问题的，但是如果是string的话会发生什么事情呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div></pre></td></tr></table></figure></p>
+<p>上面的代码结果是true，还是false？下面呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div></pre></td></tr></table></figure></p>
+<p>如果不是看了官方的文档，打死我我也猜不到。让我们看看官方怎么说的.<br>先是<a href="http://php.net/manual/zh/function.isset.php" target="_blank" rel="external">isset</a></p>
+<p>PHP 5.4 changes how isset() behaves when passed string offsets.</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0.5</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</div></pre></td></tr></table></figure>
+<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div></pre></td></tr></table></figure></p>
+<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(false)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(false)</div><div class="line">bool(false)</div></pre></td></tr></table></figure></p>
+<p><a href="http://php.net/manual/zh/function.empty.php" target="_blank" rel="external">empty的表现</a></p>
+<p>PHP 5.4 修改了当传入的是字符串偏移量时， empty() 的行为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0.5</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</div></pre></td></tr></table></figure>
+<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div></pre></td></tr></table></figure></p>
+<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(true)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(true)</div><div class="line">bool(true)</div></pre></td></tr></table></figure></p>
+<p>是不是很惊讶。直到我看到官方的这个文档我才相信问题真的出现在isset这个api上（哭）。<br>为了让大家都知道有这个问题，特定把这个分享出来，大家在用这两个api的时候，需要认真考虑一下。<br>这也让我想到一个问题，我们是不是应该提供一些工具类(系统也确实有很多Toolkit)，来封装类似这样的api（否则哪天我们真的升级php版本的话那会不会是一个噩梦）。比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">XxxxToolkit</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span>  <span class="title">isset</span><span class="params">($value)</span></span></div><div class="line">    &#123;</div><div class="line">       <span class="keyword">if</span>(is_array($value))&#123;xxxxx&#125;<span class="keyword">else</span>&#123;xxxxx&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span></span></div><div class="line">&#123;</div><div class="line"> $var = <span class="string">"xxxxx"</span>;</div><div class="line"> XxxxToolkit::isset($var);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>欢迎大家讨论。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/07/07/php-isset-empty/" data-id="cj4t5tx950003yvjjhwngy979" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/07/hello-world/" class="article-date">
@@ -104,7 +154,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/07/hello-world/" data-id="cj3msjx6l0001zijj1inpqz8n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/07/hello-world/" data-id="cj4t5tx980004yvjjaeq7oqg8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -152,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/06/07/多PC同步管理博客/" data-id="cj3msjx6r0004zijjv3dzw3up" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/06/07/多PC同步管理博客/" data-id="cj4t5tx9a0005yvjj2d414b5o" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/" data-id="cj3msjx6q0003zijjh0e8budw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/" data-id="cj4t5tx940002yvjjtxiwe8rt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +336,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/" data-id="cj3msjx6g0000zijj40dnjnoc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/" data-id="cj4t5tx8v0000yvjj3bujpz9l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cj3msjx6o0002zijj1dgpi94u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cj4t5tx910001yvjjzlagtsa6" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,7 +400,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li></ul>
     </div>
   </div>
 
@@ -361,6 +411,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/07/07/php-isset-empty/">PHP语言-isset &amp; empty</a>
+          </li>
         
           <li>
             <a href="/2017/06/07/hello-world/">Hello World</a>
@@ -376,10 +430,6 @@
         
           <li>
             <a href="/2017/05/27/PHP获取时间的坑/">PHP获取时间的坑</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/12/first-blog/">我的第一篇博客</a>
           </li>
         
       </ul>
