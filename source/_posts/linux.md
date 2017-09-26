@@ -3,8 +3,6 @@ title: Linux基础
 date: 2017-09-26 14:17:11
 tags: 基本命令
 ---
-# Linux基础
-
 ## Linux简介
 
 ## 基本命令
