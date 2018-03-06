@@ -7,7 +7,8 @@ title: 诸笑云的博客
 subtitle: 简单、快乐、技术、分享
 description: zhuxiaoyun
 author: zhuxiaoyun
-language: zh-CN
+# language: zh-CN
+language: zh-Hans
 timezone: Asia/Shanghai
 
 # URL
@@ -63,7 +64,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -71,3 +72,13 @@ deploy:
   type: git
   repo: https://github.com/zhuxiaoyun/zhuxiaoyun.github.io.git
   branch: master
+
+duoshuo:
+  enable: true
+  shortname: your-duoshuo-shortname
+
+menu:
+  home: /
+  archives: /archives
+  tags: /tags
+  categories: /categories
