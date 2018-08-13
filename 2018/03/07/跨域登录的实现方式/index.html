@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>我的第一篇博客 | 诸笑云的博客</title>
+  <title>php - 实现不同网站登录跨域的问题 | 诸笑云的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="你好，欢迎来到我的个人技术博客。">
+  <meta name="description" content="php - 实现不同网站登录跨域的问题描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！如果让用户 登录A网站的同时 打开B网站 也会登录呢？ 可以用sso单点登录解决这个问题，本质是不同的域名能同时记录同一个cookie 很久之前做过这个功能，有点忘了，大概的步骤： 例如你在test1.com登录成功后，会给一个应">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="我的第一篇博客">
-<meta property="og:url" content="http://yoursite.com/2017/05/12/first-blog/index.html">
+<meta property="og:title" content="php - 实现不同网站登录跨域的问题">
+<meta property="og:url" content="http://yoursite.com/2018/03/07/跨域登录的实现方式/index.html">
 <meta property="og:site_name" content="诸笑云的博客">
-<meta property="og:description" content="你好，欢迎来到我的个人技术博客。">
+<meta property="og:description" content="php - 实现不同网站登录跨域的问题描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！如果让用户 登录A网站的同时 打开B网站 也会登录呢？ 可以用sso单点登录解决这个问题，本质是不同的域名能同时记录同一个cookie 很久之前做过这个功能，有点忘了，大概的步骤： 例如你在test1.com登录成功后，会给一个应">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-06T08:18:33.986Z">
+<meta property="og:updated_time" content="2018-03-07T08:40:26.547Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="我的第一篇博客">
-<meta name="twitter:description" content="你好，欢迎来到我的个人技术博客。">
+<meta name="twitter:title" content="php - 实现不同网站登录跨域的问题">
+<meta name="twitter:description" content="php - 实现不同网站登录跨域的问题描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！如果让用户 登录A网站的同时 打开B网站 也会登录呢？ 可以用sso单点登录解决这个问题，本质是不同的域名能同时记录同一个cookie 很久之前做过这个功能，有点忘了，大概的步骤： 例如你在test1.com登录成功后，会给一个应">
   
     <link rel="alternate" href="/atom.xml" title="诸笑云的博客" type="application/atom+xml">
   
@@ -68,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-first-blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-跨域登录的实现方式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/12/first-blog/" class="article-date">
-  <time datetime="2017-05-12T02:45:11.000Z" itemprop="datePublished">2017-05-12</time>
+    <a href="/2018/03/07/跨域登录的实现方式/" class="article-date">
+  <time datetime="2018-03-07T08:36:36.000Z" itemprop="datePublished">2018-03-07</time>
 </a>
     
   </div>
@@ -82,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      我的第一篇博客
+      php - 实现不同网站登录跨域的问题
     </h1>
   
 
@@ -90,29 +91,34 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>你好，欢迎来到我的个人技术博客。</p>
+        <h2 id="php-实现不同网站登录跨域的问题"><a href="#php-实现不同网站登录跨域的问题" class="headerlink" title="php - 实现不同网站登录跨域的问题"></a>php - 实现不同网站登录跨域的问题</h2><h3 id="描述：例如-A网站-用的test1-com-B网站用的是test2-com-2个网站用的是2个服务器了！！-也就是用了2个数据库了！"><a href="#描述：例如-A网站-用的test1-com-B网站用的是test2-com-2个网站用的是2个服务器了！！-也就是用了2个数据库了！" class="headerlink" title="描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！"></a>描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！</h3><p>如果让用户 登录A网站的同时 打开B网站 也会登录呢？</p>
+<p>可以用sso单点登录解决这个问题，本质是不同的域名能同时记录同一个cookie</p>
+<p>很久之前做过这个功能，有点忘了，大概的步骤：</p>
+<p>例如你在test1.com登录成功后，会给一个应用中心发请求，这个应用中心保存着所有的sso登录的设置cookie的url，每个应用组装成一个script标签返回给你</p>
+<p>你接收到这些script标签后，让这些标签执行就可以了，例如B站点的响应中就会有setCookie这个响应头，这样B站点的登录cookie就在你的浏览器上保存了</p>
+<p>每个站点在你的浏览器上都有cookie了，自然就处于登录状态了</p>
+<p>很久之前做过的，大体思想是这些</p>
+<p>实现地址：<a href="https://github.com/jasny/sso" target="_blank" rel="noopener">https://github.com/jasny/sso</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/12/first-blog/" data-id="cjkrw8onr0000jvap9c6fpoop" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/03/07/跨域登录的实现方式/" data-id="cjkrw8oob000bjvapta6mqqzp" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/">php</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/05/27/PHP获取时间的坑/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          PHP获取时间的坑
-        
-      </div>
-    </a>
   
+    <a href="/2018/03/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
 </nav>
 
