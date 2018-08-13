@@ -85,6 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/index.html">
 <meta property="og:site_name" content="诸笑云的博客">
 <meta property="og:description" content="本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。 123456               ---------               -----------          ---------浏览器-------&amp;gt; | Nginx | ---FastCGI--&amp;gt; | P">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-06T08:18:33.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP开发环境搭建(Ubuntu Linux)">
@@ -185,6 +186,36 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -308,16 +339,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/27/php-develop-environment-for-linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/27/php-develop-environment-for-linux/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -343,57 +364,57 @@
 
       
         <p>本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">               ---------               -----------          ---------</div><div class="line">浏览器-------&gt; | Nginx | ---FastCGI--&gt; | PHP-FPM | -------&gt; | MySQL |</div><div class="line">               ---------               -----------          ---------</div><div class="line">               ------------------------------------------------------</div><div class="line">               |                  Linux Server                      |</div><div class="line">               ------------------------------------------------------</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">               ---------               -----------          ---------</span><br><span class="line">浏览器-------&gt; | Nginx | ---FastCGI--&gt; | PHP-FPM | -------&gt; | MySQL |</span><br><span class="line">               ---------               -----------          ---------</span><br><span class="line">               ------------------------------------------------------</span><br><span class="line">               |                  Linux Server                      |</span><br><span class="line">               ------------------------------------------------------</span><br></pre></td></tr></table></figure>
 <h2 id="配置Ubuntu的软件源"><a href="#配置Ubuntu的软件源" class="headerlink" title="配置Ubuntu的软件源"></a>配置Ubuntu的软件源</h2><p>因为Ubuntu默认的软件源，服务器不在国内，装起软件来会比较慢，所以得先将源改为国内的。</p>
 <ul>
 <li><p>备份源配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.raw</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.raw</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>更新配置文件<br>Ubuntu 14.04 使用以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">echo &quot;</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">&quot; | sudo tee /etc/apt/sources.list</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">&quot; | sudo tee /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使新的配置文件生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="更新系统软件"><a href="#更新系统软件" class="headerlink" title="更新系统软件"></a>更新系统软件</h2><ul>
 <li><p>更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get upgrade</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>移除不再需要的软件包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get autoremove</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get autoremove</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>系统重启</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo reboot</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install nginx</div></pre></td></tr></table></figure>
-<h2 id="验证Nginx安装是否成功"><a href="#验证Nginx安装是否成功" class="headerlink" title="验证Nginx安装是否成功"></a>验证Nginx安装是否成功</h2><p>在浏览器中打开 <a href="http://localhost" target="_blank" rel="external">http://localhost</a> 出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Welcome to nginx!</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="验证Nginx安装是否成功"><a href="#验证Nginx安装是否成功" class="headerlink" title="验证Nginx安装是否成功"></a>验证Nginx安装是否成功</h2><p>在浏览器中打开 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to nginx!</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>表示安装成功了。</p>
-<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server</div></pre></td></tr></table></figure>
+<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
 <p>安装的时候会询问你设置root的密码，请直接按回车，即设置密码为空。</p>
-<h2 id="验证MySQL是否安装成功"><a href="#验证MySQL是否安装成功" class="headerlink" title="验证MySQL是否安装成功"></a>验证MySQL是否安装成功</h2><p>在命令行输入<code>mysql -uroot -hlocalhost</code>，出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 8</div><div class="line">Server version: 5.7.12-0ubuntu1.1 (Ubuntu)</div><div class="line"></div><div class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</div><div class="line"></div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line"></div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div><div class="line"></div><div class="line">mysql&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="验证MySQL是否安装成功"><a href="#验证MySQL是否安装成功" class="headerlink" title="验证MySQL是否安装成功"></a>验证MySQL是否安装成功</h2><p>在命令行输入<code>mysql -uroot -hlocalhost</code>，出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 8</span><br><span class="line">Server version: 5.7.12-0ubuntu1.1 (Ubuntu)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
 <p>表示安装成功！ 输入<code>exit 回车</code>，退出mysql。</p>
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install php5 php5-cli php5-curl php5-fpm php5-intl php5-mcrypt php5-mysqlnd php5-gd</div></pre></td></tr></table></figure>
-<p>创建<code>/var/www</code>目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mkdir /var/www</div><div class="line">sudo chown -Rf YOUR_USER:YOU_GROUP /var/www</div></pre></td></tr></table></figure></p>
-<p>安装VIM:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install vim</div></pre></td></tr></table></figure></p>
-<p>修改配置文件<code>vim /etc/nginx/sites-enabled/default</code>，开启PHP相关参数。将配置替换为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 80 default_server;</div><div class="line">    listen [::]:80 default_server ipv6only=on;</div><div class="line"></div><div class="line">    root /var/www;</div><div class="line"></div><div class="line">    index index.html index.htm;</div><div class="line"></div><div class="line">    server_name localhost;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        try_files $uri $uri/ =404;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location ~ \.php$ &#123;</div><div class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</div><div class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</div><div class="line">        fastcgi_index index.php;</div><div class="line">        include fastcgi_params;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>创建测试脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo &quot;&lt;?php</div><div class="line">phpinfo();&quot; &gt; /var/www/phpinfo.php</div></pre></td></tr></table></figure></p>
-<p>浏览器打开：<br><a href="http://localhost/phpinfo.php" target="_blank" rel="external">http://localhost/phpinfo.php</a></p>
-<p>安装phpMyAdmin：<br>进入www目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-all-languages.zip</div><div class="line">tar -zxvf phpMyAdmin-4.6.5.2-all-languages.zip</div><div class="line">mv phpMyAdmin-4.6.5.2-all-languages.zip phpMyAdmin</div></pre></td></tr></table></figure></p>
-<p>浏览器打开：<br><a href="http://localhost/phpMyAdmin/index.php" target="_blank" rel="external">http://localhost/phpMyAdmin/index.php</a><br>出现页面  输入帐号root密码  进入<br>出现PHP相关信息，表明安装成功。</p>
-<h2 id="开发环境下，开启PHP的错误信息显示"><a href="#开发环境下，开启PHP的错误信息显示" class="headerlink" title="开发环境下，开启PHP的错误信息显示"></a>开发环境下，开启PHP的错误信息显示</h2><p>编辑<code>sudo vim /etc/php5/fpm/php.ini</code>，找到相应配置，修改为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">error_reporting = E_ALL</div><div class="line">display_errors = On</div><div class="line">display_startup_errors = On</div></pre></td></tr></table></figure></p>
-<p>重启php-fpm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service php5-fpm restart</div></pre></td></tr></table></figure></p>
+<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php5 php5-cli php5-curl php5-fpm php5-intl php5-mcrypt php5-mysqlnd php5-gd</span><br></pre></td></tr></table></figure>
+<p>创建<code>/var/www</code>目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/www</span><br><span class="line">sudo chown -Rf YOUR_USER:YOU_GROUP /var/www</span><br></pre></td></tr></table></figure></p>
+<p>安装VIM:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure></p>
+<p>修改配置文件<code>vim /etc/nginx/sites-enabled/default</code>，开启PHP相关参数。将配置替换为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server ipv6only=on;</span><br><span class="line"></span><br><span class="line">    root /var/www;</span><br><span class="line"></span><br><span class="line">    index index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建测试脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;?php</span><br><span class="line">phpinfo();&quot; &gt; /var/www/phpinfo.php</span><br></pre></td></tr></table></figure></p>
+<p>浏览器打开：<br><a href="http://localhost/phpinfo.php" target="_blank" rel="noopener">http://localhost/phpinfo.php</a></p>
+<p>安装phpMyAdmin：<br>进入www目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-all-languages.zip</span><br><span class="line">tar -zxvf phpMyAdmin-4.6.5.2-all-languages.zip</span><br><span class="line">mv phpMyAdmin-4.6.5.2-all-languages.zip phpMyAdmin</span><br></pre></td></tr></table></figure></p>
+<p>浏览器打开：<br><a href="http://localhost/phpMyAdmin/index.php" target="_blank" rel="noopener">http://localhost/phpMyAdmin/index.php</a><br>出现页面  输入帐号root密码  进入<br>出现PHP相关信息，表明安装成功。</p>
+<h2 id="开发环境下，开启PHP的错误信息显示"><a href="#开发环境下，开启PHP的错误信息显示" class="headerlink" title="开发环境下，开启PHP的错误信息显示"></a>开发环境下，开启PHP的错误信息显示</h2><p>编辑<code>sudo vim /etc/php5/fpm/php.ini</code>，找到相应配置，修改为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">error_reporting = E_ALL</span><br><span class="line">display_errors = On</span><br><span class="line">display_startup_errors = On</span><br></pre></td></tr></table></figure></p>
+<p>重启php-fpm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php5-fpm restart</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装SublimeText-3（此步骤可能安装不了，可以到网上自行下载）"><a href="#安装SublimeText-3（此步骤可能安装不了，可以到网上自行下载）" class="headerlink" title="安装SublimeText 3（此步骤可能安装不了，可以到网上自行下载）"></a>安装SublimeText 3（此步骤可能安装不了，可以到网上自行下载）</h2><p>SublimeText 3 是目前最流行的开发编辑器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -y ppa:webupd8team/sublime-text-3</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y sublime-text-installer</div></pre></td></tr></table></figure>
-<h2 id="设置SublimeText-3-等宽字体"><a href="#设置SublimeText-3-等宽字体" class="headerlink" title="设置SublimeText 3 等宽字体"></a>设置SublimeText 3 等宽字体</h2><p>打开菜单<code>Preferences -&gt; Setting-User</code>，修改内容，并保存：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;font_face&quot;: &quot;Ubuntu Mono&quot;,</div><div class="line">    &quot;font_size&quot;: 12,</div><div class="line">    &quot;highlight_line&quot;: true,</div><div class="line">    &quot;translate_tabs_to_spaces&quot;: true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository -y ppa:webupd8team/sublime-text-3</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y sublime-text-installer</span><br></pre></td></tr></table></figure>
+<h2 id="设置SublimeText-3-等宽字体"><a href="#设置SublimeText-3-等宽字体" class="headerlink" title="设置SublimeText 3 等宽字体"></a>设置SublimeText 3 等宽字体</h2><p>打开菜单<code>Preferences -&gt; Setting-User</code>，修改内容，并保存：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;font_face&quot;: &quot;Ubuntu Mono&quot;,</span><br><span class="line">    &quot;font_size&quot;: 12,</span><br><span class="line">    &quot;highlight_line&quot;: true,</span><br><span class="line">    &quot;translate_tabs_to_spaces&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装输入法Fcitx"><a href="#安装输入法Fcitx" class="headerlink" title="安装输入法Fcitx"></a>安装输入法Fcitx</h2><p>因为fcitx输入法能在SublimeText 3下输入中文。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -y ppa:fcitx-team/nightly</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin</div><div class="line">sudo apt-get install -y build-essential libgtk2.0-dev</div><div class="line">sudo apt-get install -y fcitx-table-all</div><div class="line">sudo apt-get install im-switch</div><div class="line">im-switch -s fcitx -z default</div></pre></td></tr></table></figure>
-<p>如无im-switch这个命令，则执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">im-config -n fcitx</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository -y ppa:fcitx-team/nightly</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin</span><br><span class="line">sudo apt-get install -y build-essential libgtk2.0-dev</span><br><span class="line">sudo apt-get install -y fcitx-table-all</span><br><span class="line">sudo apt-get install im-switch</span><br><span class="line">im-switch -s fcitx -z default</span><br></pre></td></tr></table></figure>
+<p>如无im-switch这个命令，则执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">im-config -n fcitx</span><br></pre></td></tr></table></figure></p>
 <p>安装完之后，重启电脑。即可使用fcitx输入法，按Ctrl + 空格，调出输入法。</p>
-<h2 id="解决SublimeText-3-中文输入法问题"><a href="#解决SublimeText-3-中文输入法问题" class="headerlink" title="解决SublimeText 3 中文输入法问题"></a>解决SublimeText 3 中文输入法问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/sublime_text/</div><div class="line">sudo wget https://github.com/lyfeyaj/sublime-text-imfix/raw/master/lib/libsublime-imfix.so</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo mv /usr/bin/subl /usr/bin/subl_raw</div><div class="line"></div><div class="line">echo &quot;</div><div class="line">#!/bin/sh</div><div class="line">export LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so</div><div class="line">exec /opt/sublime_text/sublime_text \&quot;\$@\&quot;&quot;  | sudo tee /usr/bin/subl </div><div class="line"></div><div class="line">sudo chmod a+x /usr/bin/subl</div></pre></td></tr></table></figure>
-<p>编辑<code>vim /usr/share/applications/sublime_text.desktop</code>，将内容替换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[Desktop Entry]</div><div class="line">Version=1.0</div><div class="line">Type=Application</div><div class="line">Name=Sublime Text</div><div class="line">GenericName=Text Editor</div><div class="line">Comment=Sophisticated text editor for code, markup and prose</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text %F&quot;</div><div class="line">Terminal=false</div><div class="line">MimeType=text/plain;</div><div class="line">Icon=sublime-text</div><div class="line">Categories=TextEditor;Development;</div><div class="line">StartupNotify=true</div><div class="line">Actions=Window;Document;</div><div class="line"></div><div class="line">[Desktop Action Window]</div><div class="line">Name=New Window</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text -n&quot;</div><div class="line">OnlyShowIn=Unity;</div><div class="line"></div><div class="line">[Desktop Action Document]</div><div class="line">Name=New File</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file&quot;</div><div class="line">OnlyShowIn=Unity;</div></pre></td></tr></table></figure></p>
+<h2 id="解决SublimeText-3-中文输入法问题"><a href="#解决SublimeText-3-中文输入法问题" class="headerlink" title="解决SublimeText 3 中文输入法问题"></a>解决SublimeText 3 中文输入法问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/sublime_text/</span><br><span class="line">sudo wget https://github.com/lyfeyaj/sublime-text-imfix/raw/master/lib/libsublime-imfix.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /usr/bin/subl /usr/bin/subl_raw</span><br><span class="line"></span><br><span class="line">echo &quot;</span><br><span class="line">#!/bin/sh</span><br><span class="line">export LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so</span><br><span class="line">exec /opt/sublime_text/sublime_text \&quot;\$@\&quot;&quot;  | sudo tee /usr/bin/subl </span><br><span class="line"></span><br><span class="line">sudo chmod a+x /usr/bin/subl</span><br></pre></td></tr></table></figure>
+<p>编辑<code>vim /usr/share/applications/sublime_text.desktop</code>，将内容替换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Version=1.0</span><br><span class="line">Type=Application</span><br><span class="line">Name=Sublime Text</span><br><span class="line">GenericName=Text Editor</span><br><span class="line">Comment=Sophisticated text editor for code, markup and prose</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text %F&quot;</span><br><span class="line">Terminal=false</span><br><span class="line">MimeType=text/plain;</span><br><span class="line">Icon=sublime-text</span><br><span class="line">Categories=TextEditor;Development;</span><br><span class="line">StartupNotify=true</span><br><span class="line">Actions=Window;Document;</span><br><span class="line"></span><br><span class="line">[Desktop Action Window]</span><br><span class="line">Name=New Window</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text -n&quot;</span><br><span class="line">OnlyShowIn=Unity;</span><br><span class="line"></span><br><span class="line">[Desktop Action Document]</span><br><span class="line">Name=New File</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file&quot;</span><br><span class="line">OnlyShowIn=Unity;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -460,13 +481,6 @@
           
 
   
-    <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017/05/27/php-develop-environment-for-linux/"
-           data-title="PHP开发环境搭建(Ubuntu Linux)" data-url="http://yoursite.com/2017/05/27/php-develop-environment-for-linux/">
-      </div>
-    </div>
-
-  
 
 
 
@@ -514,12 +528,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -720,35 +743,25 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
-
+  
 
 
 
@@ -768,7 +781,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {

@@ -85,6 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="诸笑云的博客">
 <meta property="og:description" content="zhuxiaoyun">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="诸笑云的博客">
 <meta name="twitter:description" content="zhuxiaoyun">
@@ -189,6 +190,36 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
@@ -265,6 +296,502 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/Linux查询/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/13/Linux查询/" itemprop="url">Linux查询</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T15:31:55+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="查看当前路径"><a href="#查看当前路径" class="headerlink" title="查看当前路径"></a>查看当前路径</h3><p>pwd</p>
+<h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><p>who</p>
+<h3 id="ll列出当前目录下-以la开头的文件"><a href="#ll列出当前目录下-以la开头的文件" class="headerlink" title="ll列出当前目录下 以la开头的文件"></a>ll列出当前目录下 以la开头的文件</h3><p>1、直接使用通配符<br>ll la<em><br>2、使用管道，将ls的输出送入grep这个程序来实现<br>ls -1 | grep “^la”<br>-1选项表示将列出的所有文件排成一列，方便grep的匹配（grep按行匹配）。<br>ls -a | grep “la\</em>“</p>
+<h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><p>find /etc -name “la*“<br>查找/etc目录下，以”la”开头命名的文件，/ 表示全局</p>
+<h3 id="grep-查看匹配日志的前后几行"><a href="#grep-查看匹配日志的前后几行" class="headerlink" title="grep 查看匹配日志的前后几行"></a>grep 查看匹配日志的前后几行</h3><p>如果在只是想匹配模式的上下几行，grep可以实现。</p>
+<p>$grep -5 ‘parttern’ inputfile //打印匹配行的前后5行</p>
+<p>$grep -C 5 ‘parttern’ inputfile //打印匹配行的前后5行</p>
+<p>$grep -A 5 ‘parttern’ inputfile //打印匹配行的后5行</p>
+<p>$grep -B 5 ‘parttern’ inputfile //打印匹配行的前5行</p>
+<h3 id="grep-多次搜索关键字"><a href="#grep-多次搜索关键字" class="headerlink" title="grep 多次搜索关键字"></a>grep 多次搜索关键字</h3><h3 id="查看某一个文件第5行到第10行"><a href="#查看某一个文件第5行到第10行" class="headerlink" title="查看某一个文件第5行到第10行"></a>查看某一个文件第5行到第10行</h3><p> sed -n ‘5,10p’ filename 这样你就可以只查看文件的第5行到第10行。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/crontab-定时脚本相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/13/crontab-定时脚本相关/" itemprop="url">crontab 定时脚本相关</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T15:01:50+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><pre><code>crontab -l  查看生效的定时任务列表
+crontab -l -u XXX 列出XXX用户的所有定时任务
+crontab -e  编辑定时任务
+</code></pre><h3 id="基本格式"><a href="#基本格式" class="headerlink" title="基本格式"></a>基本格式</h3><p>*  *  *  *  *　　command<br>分  时   日  月   周　 命令<br>第1列表示分钟1～59 每分钟用*或者 */1表示<br>第2列表示小时1～23（0表示0点）<br>第3列表示日期1～31<br>第4列表示月份1～12<br>第5列标识号星期0～6（0表示星期天）<br>第6列要运行的命令</p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>30 21 * * * /usr/local/etc/rc.d/lighttpd restart 每晚的21:30重启apache。<br>45 4 1,10,22 * * /usr/local/etc/rc.d/lighttpd restart 每月1、10、22日的4 : 45重启apache。<br>10 1 * * 6,0 /usr/local/etc/rc.d/lighttpd restart 每周六、周日的1 : 10重启apache。 </p>
+<h3 id="定时任务不执行，排查步骤"><a href="#定时任务不执行，排查步骤" class="headerlink" title="定时任务不执行，排查步骤"></a>定时任务不执行，排查步骤</h3><h4 id="检查日志"><a href="#检查日志" class="headerlink" title="检查日志"></a>检查日志</h4><p>1、查看是否有设置输出日志，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01 02 * * * /var/www/lms/app/console statistics:testpaper-result &amp;&amp; date &gt;&gt; ~/crontab.log</span><br></pre></td></tr></table></figure></p>
+<p>2、没有输出日志，检查执行日志<br>    /var/log/crontablog</p>
+<p>有执行日志，很明显，任务计划确实在正常执行着，看来问题在脚本上了。</p>
+<h4 id="检查脚本"><a href="#检查脚本" class="headerlink" title="检查脚本"></a>检查脚本</h4><p>1、直接执行<br>检查脚本第一步，直接按照 crontab 里面的命令行，执行脚本：<br>直接执行成功，而放到 crontab 就失败，经验告诉我肯定的脚本环境变量有问题了！</p>
+<p>2、环境变量<br>于是在脚本里面载入环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">#先载入环境变量</span><br><span class="line">source /etc/profile</span><br><span class="line">#其他代码不变</span><br></pre></td></tr></table></figure>
+<p>结果还是不行</p>
+<p>3、系统邮件<br>经验告诉我，crontab 执行失败，如果没有屏蔽错误的话，会产生一个系统邮件，</p>
+<p>位置在 /var/spool/mail/root</p>
+<p>cat /var/spool/mail/root 发现是否有报错</p>
+<h4 id="分析总结"><a href="#分析总结" class="headerlink" title="分析总结"></a>分析总结</h4><p>Linux 系统里面计划任务，crontab 没有如期执行这是运维工作中比较常见的一种故障了，根据经验，大家可以从如下角度分析解决:</p>
+<p>①、检查 crontab 服务是否正常<br>这个一般通过查看日志来检查，也就是前文提到的 /var/log/cron 或 /var/log/messages，如果里面没有发现执行记录，那么可以重启下这个服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.在系统中有service这个命令时：</span><br><span class="line">service crond stop | start | restart</span><br><span class="line">2.linux发行版本没有service这个命令时：</span><br><span class="line">/etc/init.d/cron stop | start | restart</span><br></pre></td></tr></table></figure></p>
+<p>②、检查脚本的执行权限<br>一般来说，在 crontab 中建议使用 sh 或 bash 来执行 shell 脚本，避免因脚本文件的执行权限丢失导致任务失败。当然，最直接检查就是人工直接复制 crontab -l 里面的命令行测试结果。</p>
+<p>③、检查脚本需要用到的变量<br>和上文一样，通常来说从 crontab 里面执行的脚本和人工执行的环境变量是不一样的，所以对于一些系统变量，建议写绝对路径，或使用 witch 动态获取，比如  sudo_bin=$(which sudo) 就能拿到 sudo 在当前系统的绝对路径了。</p>
+<p>④、放大招：查看日志<br>其实，最直接最有效的就是查看执行日志了，结合 crontab 执行记录，以及 crontab 执行出错后的系统邮件，一般都能彻底找到失败的原因了！当然，要记住在 crontab 中如果屏蔽了错误信息，就不会发邮件了。</p>
+<p>这又让我想起了如果 crontab 未屏蔽日志，可能会导致硬盘 inode 爆满 ==&gt; 历史文章传送门 ，感兴趣的童鞋也可以谷歌一下 /var/spool/clientmqueue/ 这个关键词了解下。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>千万别乱运行crontab -r。它从Crontab目录（/var/spool/cron）中删除用户的Crontab文件。删除了该用户的所有crontab都没了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/07/跨域登录的实现方式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/07/跨域登录的实现方式/" itemprop="url">php - 实现不同网站登录跨域的问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T16:36:36+08:00">
+                2018-03-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="php-实现不同网站登录跨域的问题"><a href="#php-实现不同网站登录跨域的问题" class="headerlink" title="php - 实现不同网站登录跨域的问题"></a>php - 实现不同网站登录跨域的问题</h2><h3 id="描述：例如-A网站-用的test1-com-B网站用的是test2-com-2个网站用的是2个服务器了！！-也就是用了2个数据库了！"><a href="#描述：例如-A网站-用的test1-com-B网站用的是test2-com-2个网站用的是2个服务器了！！-也就是用了2个数据库了！" class="headerlink" title="描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！"></a>描述：例如 A网站 用的test1.com B网站用的是test2.com 2个网站用的是2个服务器了！！ 也就是用了2个数据库了！</h3><p>如果让用户 登录A网站的同时 打开B网站 也会登录呢？</p>
+<p>可以用sso单点登录解决这个问题，本质是不同的域名能同时记录同一个cookie</p>
+<p>很久之前做过这个功能，有点忘了，大概的步骤：</p>
+<p>例如你在test1.com登录成功后，会给一个应用中心发请求，这个应用中心保存着所有的sso登录的设置cookie的url，每个应用组装成一个script标签返回给你</p>
+<p>你接收到这些script标签后，让这些标签执行就可以了，例如B站点的响应中就会有setCookie这个响应头，这样B站点的登录cookie就在你的浏览器上保存了</p>
+<p>每个站点在你的浏览器上都有cookie了，自然就处于登录状态了</p>
+<p>很久之前做过的，大体思想是这些</p>
+<p>实现地址：<a href="https://github.com/jasny/sso" target="_blank" rel="noopener">https://github.com/jasny/sso</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -310,16 +837,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/06/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/03/06/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -346,16 +863,16 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<h3 id="Clean-清楚缓存"><a href="#Clean-清楚缓存" class="headerlink" title="Clean 清楚缓存"></a>Clean 清楚缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<h3 id="Clean-清楚缓存"><a href="#Clean-清楚缓存" class="headerlink" title="Clean 清楚缓存"></a>Clean 清楚缓存</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -446,18 +963,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/26/php/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/26/php/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -487,32 +1027,32 @@
           
             <p>本文叙述了PHP初学者学习PHP语言的路径图。请边学习边实践。</p>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><ul>
-<li><a href="http://php.net/manual/zh/intro-whatis.php" target="_blank" rel="external">PHP 是什么？</a></li>
-<li><a href="http://php.net/manual/zh/intro-whatcando.php" target="_blank" rel="external">PHP 能做什么？</a></li>
-<li><a href="https://github.com/PizzaLiu/PHP-FIG" target="_blank" rel="external">PHP 编码规范</a>  —- <a href="http://coding.codeages.net/tech/knowledge-base/blob/master/coding-standards/php/example.md" target="_blank" rel="external">(例子)</a></li>
-<li><a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="external">PHP中的FASTCGI 与 PHP-FPM的关系</a></li>
+<li><a href="http://php.net/manual/zh/intro-whatis.php" target="_blank" rel="noopener">PHP 是什么？</a></li>
+<li><a href="http://php.net/manual/zh/intro-whatcando.php" target="_blank" rel="noopener">PHP 能做什么？</a></li>
+<li><a href="https://github.com/PizzaLiu/PHP-FIG" target="_blank" rel="noopener">PHP 编码规范</a>  —- <a href="http://coding.codeages.net/tech/knowledge-base/blob/master/coding-standards/php/example.md" target="_blank" rel="noopener">(例子)</a></li>
+<li><a href="https://segmentfault.com/q/1010000000256516" target="_blank" rel="noopener">PHP中的FASTCGI 与 PHP-FPM的关系</a></li>
 </ul>
 <h2 id="简明教程"><a href="#简明教程" class="headerlink" title="简明教程"></a>简明教程</h2><ul>
-<li><a href="http://php.net/manual/zh/tutorial.firstpage.php" target="_blank" rel="external">第一个PHP页面</a></li>
-<li><a href="http://php.net/manual/zh/tutorial.useful.php" target="_blank" rel="external">实用的脚本</a></li>
-<li><a href="http://php.net/manual/zh/tutorial.forms.php" target="_blank" rel="external">处理表单</a></li>
+<li><a href="http://php.net/manual/zh/tutorial.firstpage.php" target="_blank" rel="noopener">第一个PHP页面</a></li>
+<li><a href="http://php.net/manual/zh/tutorial.useful.php" target="_blank" rel="noopener">实用的脚本</a></li>
+<li><a href="http://php.net/manual/zh/tutorial.forms.php" target="_blank" rel="noopener">处理表单</a></li>
 </ul>
 <h2 id="语言参考"><a href="#语言参考" class="headerlink" title="语言参考"></a>语言参考</h2><ul>
-<li><a href="http://php.net/manual/zh/language.basic-syntax.php" target="_blank" rel="external">基本语法</a></li>
-<li><a href="http://php.net/manual/zh/language.types.php" target="_blank" rel="external">类型</a></li>
-<li><a href="http://php.net/manual/zh/language.variables.php" target="_blank" rel="external">变量</a></li>
-<li><a href="http://php.net/manual/zh/language.constants.php" target="_blank" rel="external">常量</a></li>
-<li><a href="http://php.net/manual/zh/language.expressions.php" target="_blank" rel="external">表达式</a></li>
-<li><a href="http://php.net/manual/zh/language.operators.php" target="_blank" rel="external">运算符</a></li>
-<li><a href="http://php.net/manual/zh/language.control-structures.php" target="_blank" rel="external">流程控制</a></li>
-<li><a href="http://php.net/manual/zh/language.functions.php" target="_blank" rel="external">函数</a></li>
-<li><a href="http://php.net/manual/zh/reserved.variables.php" target="_blank" rel="external">预定义变量</a></li>
+<li><a href="http://php.net/manual/zh/language.basic-syntax.php" target="_blank" rel="noopener">基本语法</a></li>
+<li><a href="http://php.net/manual/zh/language.types.php" target="_blank" rel="noopener">类型</a></li>
+<li><a href="http://php.net/manual/zh/language.variables.php" target="_blank" rel="noopener">变量</a></li>
+<li><a href="http://php.net/manual/zh/language.constants.php" target="_blank" rel="noopener">常量</a></li>
+<li><a href="http://php.net/manual/zh/language.expressions.php" target="_blank" rel="noopener">表达式</a></li>
+<li><a href="http://php.net/manual/zh/language.operators.php" target="_blank" rel="noopener">运算符</a></li>
+<li><a href="http://php.net/manual/zh/language.control-structures.php" target="_blank" rel="noopener">流程控制</a></li>
+<li><a href="http://php.net/manual/zh/language.functions.php" target="_blank" rel="noopener">函数</a></li>
+<li><a href="http://php.net/manual/zh/reserved.variables.php" target="_blank" rel="noopener">预定义变量</a></li>
 </ul>
 <h2 id="函数参考"><a href="#函数参考" class="headerlink" title="函数参考"></a>函数参考</h2><ul>
-<li><a href="http://php.net/manual/zh/ref.strings.php" target="_blank" rel="external">字符串处理函数</a><br>chr, echo, explode, implode, lcfirst, ltrim, nl2br, print, rtrim, sprintf, str_ireplace, str_split, strip_tags, stripos, strlen, strpos, strtolower, strtoupper, substr, trim, ucfirst</li>
-<li><a href="http://php.net/manual/zh/book.array.php" target="_blank" rel="external">数组处理函数</a><br>array_key_exists, array_keys, array_merge, array_pop, array_push, array_rand, array_replace, array_search, array_shift, array_values, count, in_array, ksort, list, shuffle, sort</li>
-<li><a href="http://php.net/manual/zh/ref.datetime.php" target="_blank" rel="external">日期/时间函数</a><br>date, time, strtotime</li>
-<li><a href="http://php.net/manual/zh/ref.filesystem.php" target="_blank" rel="external">文件操作函数</a><br>basename, chmod, chown, fopen, copy, delete, dirname, fclose, feof, fgetc, fgets, file_exists, file_get_contents, file_put_contents, filesize, fopen, fputs, fread, fwrite, is_dir, is_executable, is_file, is_readable, is_writable, mkdir, pathinfo, realpath, rename, rmdir, unlink</li>
+<li><a href="http://php.net/manual/zh/ref.strings.php" target="_blank" rel="noopener">字符串处理函数</a><br>chr, echo, explode, implode, lcfirst, ltrim, nl2br, print, rtrim, sprintf, str_ireplace, str_split, strip_tags, stripos, strlen, strpos, strtolower, strtoupper, substr, trim, ucfirst</li>
+<li><a href="http://php.net/manual/zh/book.array.php" target="_blank" rel="noopener">数组处理函数</a><br>array_key_exists, array_keys, array_merge, array_pop, array_push, array_rand, array_replace, array_search, array_shift, array_values, count, in_array, ksort, list, shuffle, sort</li>
+<li><a href="http://php.net/manual/zh/ref.datetime.php" target="_blank" rel="noopener">日期/时间函数</a><br>date, time, strtotime</li>
+<li><a href="http://php.net/manual/zh/ref.filesystem.php" target="_blank" rel="noopener">文件操作函数</a><br>basename, chmod, chown, fopen, copy, delete, dirname, fclose, feof, fgetc, fgets, file_exists, file_get_contents, file_put_contents, filesize, fopen, fputs, fread, fwrite, is_dir, is_executable, is_file, is_readable, is_writable, mkdir, pathinfo, realpath, rename, rmdir, unlink</li>
 </ul>
 
           
@@ -604,18 +1144,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/09/26/linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/09/26/linux/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -643,16 +1206,16 @@
       
         
           
-            <h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>man cd ls cp rm mkdir rmdir chmod chown sudo ssh scp top cat kill<br>详细使用请参见<a href="http://blog.csdn.net/ljianhui/article/details/11100625" target="_blank" rel="external">Linux常用命令的详细用法</a>，自行实践。<br>在线查询Linux命令的用法请参见<a href="http://man.linuxde.net/" target="_blank" rel="external">Linux 手册</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">常见命令用法 </div><div class="line">cd /var/www    切换到 /var/www目录下</div><div class="line">ls             列出所在目录下的内容 (ll 更详细)</div><div class="line">cp -r /var/www/edusoho /data/www    将 /var/www/eudosho 拷贝到 /data/www 目录下</div><div class="line">mkdir abc      当前目录下, 新建 abc文件夹</div><div class="line">rm -rf abc     强制删除abc, 如果abc是文件加, 也可用命令 rmdir abc</div><div class="line">chown -r user:group abc   将abc文件或目录的用户组和用户改为 group 和 user</div><div class="line">chmod -Rf 777 abc  给abc文件授权, 所有人都能读写</div><div class="line">sudo rm -rf abc  使用系统管理员的权限进行操作</div><div class="line">ssh -p1122 root@111.22.22.11   远程访问 111.22.22.11 服务器, 一般端口为 1122 或 22, 会提示输入密码</div><div class="line">scp -r -P 1122 allSqls.sql root@111.22.22.11:~  将allSqls.sql拷贝到远程服务器的 ~ 目录下, 会提示输入密码</div><div class="line">top  查看服务器状态和进程</div><div class="line">tail -f a.txt  查看a.txt最后几行, 会实时刷新</div><div class="line">sudo vim a.txt 查看文本, 能进行编辑, 输入 小写字母i, 可进行编辑, 编辑完后, 按 esc, 冒号, wq, 回车, 进行保存</div><div class="line">cat a.txt  显示所有内容</div><div class="line">lsof -i:80  查看使用80端口的所有进程</div><div class="line">kill -9 1202  删除进程号为1202的进程, 如lsof -i:80命令列出来的 PID</div></pre></td></tr></table></figure></p>
-<h2 id="管道（pipe）"><a href="#管道（pipe）" class="headerlink" title="管道（pipe）"></a>管道（pipe）</h2><p>  管道的操作命令符是“|”，它负责将前一条指令传出的正确输出信息（即standard output, 不包括standard error）作为标准输入（standard input）传递个下一个命令。<br>  比如下述命令cat输出的文件内容传递给grep命令，按照限定的字符串进行筛选，结果输出到standard output.<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat error.log | grep &apos;RuntimeException&apos;</div></pre></td></tr></table></figure></p>
-<p>详情参见：<a href="http://c.biancheng.net/cpp/html/2732.html" target="_blank" rel="external">管道和过滤器</a><br>进一步了解参见：<a href="http://oilbeater.com/linux/2012/05/29/linux_pipe.html" target="_blank" rel="external">管道机制</a></p>
+            <h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><p>man cd ls cp rm mkdir rmdir chmod chown sudo ssh scp top cat kill<br>详细使用请参见<a href="http://blog.csdn.net/ljianhui/article/details/11100625" target="_blank" rel="noopener">Linux常用命令的详细用法</a>，自行实践。<br>在线查询Linux命令的用法请参见<a href="http://man.linuxde.net/" target="_blank" rel="noopener">Linux 手册</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">常见命令用法 </span><br><span class="line">cd /var/www    切换到 /var/www目录下</span><br><span class="line">ls             列出所在目录下的内容 (ll 更详细)</span><br><span class="line">cp -r /var/www/edusoho /data/www    将 /var/www/eudosho 拷贝到 /data/www 目录下</span><br><span class="line">mkdir abc      当前目录下, 新建 abc文件夹</span><br><span class="line">rm -rf abc     强制删除abc, 如果abc是文件加, 也可用命令 rmdir abc</span><br><span class="line">chown -r user:group abc   将abc文件或目录的用户组和用户改为 group 和 user</span><br><span class="line">chmod -Rf 777 abc  给abc文件授权, 所有人都能读写</span><br><span class="line">sudo rm -rf abc  使用系统管理员的权限进行操作</span><br><span class="line">ssh -p1122 root@111.22.22.11   远程访问 111.22.22.11 服务器, 一般端口为 1122 或 22, 会提示输入密码</span><br><span class="line">scp -r -P 1122 allSqls.sql root@111.22.22.11:~  将allSqls.sql拷贝到远程服务器的 ~ 目录下, 会提示输入密码</span><br><span class="line">top  查看服务器状态和进程</span><br><span class="line">tail -f a.txt  查看a.txt最后几行, 会实时刷新</span><br><span class="line">sudo vim a.txt 查看文本, 能进行编辑, 输入 小写字母i, 可进行编辑, 编辑完后, 按 esc, 冒号, wq, 回车, 进行保存</span><br><span class="line">cat a.txt  显示所有内容</span><br><span class="line">lsof -i:80  查看使用80端口的所有进程</span><br><span class="line">kill -9 1202  删除进程号为1202的进程, 如lsof -i:80命令列出来的 PID</span><br></pre></td></tr></table></figure></p>
+<h2 id="管道（pipe）"><a href="#管道（pipe）" class="headerlink" title="管道（pipe）"></a>管道（pipe）</h2><p>  管道的操作命令符是“|”，它负责将前一条指令传出的正确输出信息（即standard output, 不包括standard error）作为标准输入（standard input）传递个下一个命令。<br>  比如下述命令cat输出的文件内容传递给grep命令，按照限定的字符串进行筛选，结果输出到standard output.<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat error.log | grep &apos;RuntimeException&apos;</span><br></pre></td></tr></table></figure></p>
+<p>详情参见：<a href="http://c.biancheng.net/cpp/html/2732.html" target="_blank" rel="noopener">管道和过滤器</a><br>进一步了解参见：<a href="http://oilbeater.com/linux/2012/05/29/linux_pipe.html" target="_blank" rel="noopener">管道机制</a></p>
 <h2 id="输入输出重定向"><a href="#输入输出重定向" class="headerlink" title="输入输出重定向"></a>输入输出重定向</h2><ul>
 <li><p>标准输入重定向，使用 &lt; 或 &lt;&lt; , 从指定文件获取输入信息，如下命令将从message.log中查询含有”locale”的行并输出到屏幕：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep &quot;locale&quot; &lt; message.log</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;locale&quot; &lt; message.log</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>标准输出重定向（stdout），使用 &gt; 或 &gt;&gt; 表达，比如下面，执行test.php，将结果输出到result.html；</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">php test.php &gt; result.html</div></pre></td></tr></table></figure>
-<p>详细说明和使用参见：<a href="http://www.cnblogs.com/chengmo/archive/2010/10/20/1855805.html" target="_blank" rel="external">Linux Shell 输入输出重定向详细分析</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php test.php &gt; result.html</span><br></pre></td></tr></table></figure>
+<p>详细说明和使用参见：<a href="http://www.cnblogs.com/chengmo/archive/2010/10/20/1855805.html" target="_blank" rel="noopener">Linux Shell 输入输出重定向详细分析</a></p>
 </li>
 </ul>
 <h2 id="Linux用户、用户组、文件权限"><a href="#Linux用户、用户组、文件权限" class="headerlink" title="Linux用户、用户组、文件权限"></a>Linux用户、用户组、文件权限</h2><p>Linux是一个完整的多用户多任务操作系统，允许多个用户在同一时间登录同一系统执行各自不同的任务。<br>Linux用户分成三种：  </p>
@@ -661,16 +1224,16 @@
 <li>普通用户，只能对自己目录下的文件进行访问和修改，具有登录系统的权限，比如ftp、www等；</li>
 <li>虚拟用户／伪用户，不能登录系统，它们主要是为方便管理系统，满足相应系统进程对文件属主的要求，比如内置的bin、adm、nobody等<br>将用户分组是Linux系统对用户进行管理和控制访问权限的手段，很大程度上简化了管理工作。</li>
 </ul>
-<p>用户及文件详细操作命令参见<a href="http://www.runoob.com/linux/linux-user-manage.html" target="_blank" rel="external">Linux用户和用户组管理</a>。</p>
-<h2 id="编辑器VIM"><a href="#编辑器VIM" class="headerlink" title="编辑器VIM"></a>编辑器VIM</h2><p>vim，神一样的编辑器！<br>vim = vi improved<br>详细命令操作参见拓展阅读<a href="http://coolshell.cn/articles/5426.html" target="_blank" rel="external">简明Vim练级攻略－酷壳</a></p>
+<p>用户及文件详细操作命令参见<a href="http://www.runoob.com/linux/linux-user-manage.html" target="_blank" rel="noopener">Linux用户和用户组管理</a>。</p>
+<h2 id="编辑器VIM"><a href="#编辑器VIM" class="headerlink" title="编辑器VIM"></a>编辑器VIM</h2><p>vim，神一样的编辑器！<br>vim = vi improved<br>详细命令操作参见拓展阅读<a href="http://coolshell.cn/articles/5426.html" target="_blank" rel="noopener">简明Vim练级攻略－酷壳</a></p>
 <p>!!! note “注意”<br>    已使用过VIM的同学，请学习到文章中的第三级。未使用过的同学，请学习到文章中的第一级。剩余部分列入你的当月学习的Todo List。</p>
-<h2 id="Ubuntu的软件的安装"><a href="#Ubuntu的软件的安装" class="headerlink" title="Ubuntu的软件的安装"></a>Ubuntu的软件的安装</h2><p>apt-get是ubuntu、debian的包管理工具，与red hat的yum类似，一般需要root权限执行，所以通常是 sudo apt-get …。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">查找：</div><div class="line">apt-cache search querystring </div><div class="line"></div><div class="line">安装：</div><div class="line">apt-get install packagename</div><div class="line"></div><div class="line">卸载：(保留配置文件)</div><div class="line">apt-get remove packagename</div><div class="line"></div><div class="line">完全卸载：（不保留配置文件）</div><div class="line">apt-get --purge remove packagename</div></pre></td></tr></table></figure></p>
-<p>详细操作参见<a href="http://www.howtogeek.com/63997/how-to-install-programs-in-ubuntu-in-the-command-line/" target="_blank" rel="external">apt-get 详细命令</a></p>
-<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">1．  登录进入系统。</div><div class="line">2．  使用简单命令：date，cal，who，echo，clear等，了解Linux命令格式。</div><div class="line">3．  浏览文件系统：</div><div class="line">(1)    运行pwd命令，确定当前工作目录。</div><div class="line">(2)    运行ls –l命令，理解各字段含义。</div><div class="line">(3)    使用cd命令，将工作目录改到（/）上。</div><div class="line">运行ls –l命令，结合文件系统的知识，了解各目录的作用。</div><div class="line">(5)    直接使用cd命令，或到哪里了？用pwd验证。</div><div class="line">(6)    用mkdir在根目录下建立一个子目录subdir。在用户主目录下建立可以吗？</div><div class="line">(7)    将工作目录改到subdir下。</div><div class="line">4．  文件操作：</div><div class="line">(1)    验证当前工作目录在subdir。</div><div class="line">(2)    运行date &gt; file1，然后运行cat file1，看到什么信息？</div><div class="line">(3)    运行cat subdir，会有什么结果？为什么？</div><div class="line">(4)    利用man命令显示date命令的使用说明。</div><div class="line">(5)    运行man date &gt;&gt; file1，看到什么？ 运行cat file1，看到什么？</div><div class="line">(6)    用vim 建立用户目录下的ex文件，输入一些内容。</div><div class="line">(8)    显示file1的前十行，后十行。</div><div class="line">(9)    运行cp file1 file2，然后ls –l，看到什么？ 运行mv file2 file3，然后ls –l，看到什么？ 运行cat f*，结果怎样？</div><div class="line">(10)   运行rm file3，然后ls –l，结果如何？</div><div class="line">(11)   更改file1的文件所属的用户组为root。</div></pre></td></tr></table></figure>
+<h2 id="Ubuntu的软件的安装"><a href="#Ubuntu的软件的安装" class="headerlink" title="Ubuntu的软件的安装"></a>Ubuntu的软件的安装</h2><p>apt-get是ubuntu、debian的包管理工具，与red hat的yum类似，一般需要root权限执行，所以通常是 sudo apt-get …。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">查找：</span><br><span class="line">apt-cache search querystring </span><br><span class="line"></span><br><span class="line">安装：</span><br><span class="line">apt-get install packagename</span><br><span class="line"></span><br><span class="line">卸载：(保留配置文件)</span><br><span class="line">apt-get remove packagename</span><br><span class="line"></span><br><span class="line">完全卸载：（不保留配置文件）</span><br><span class="line">apt-get --purge remove packagename</span><br></pre></td></tr></table></figure></p>
+<p>详细操作参见<a href="http://www.howtogeek.com/63997/how-to-install-programs-in-ubuntu-in-the-command-line/" target="_blank" rel="noopener">apt-get 详细命令</a></p>
+<h2 id="课后练习"><a href="#课后练习" class="headerlink" title="课后练习"></a>课后练习</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1．  登录进入系统。</span><br><span class="line">2．  使用简单命令：date，cal，who，echo，clear等，了解Linux命令格式。</span><br><span class="line">3．  浏览文件系统：</span><br><span class="line">(1)    运行pwd命令，确定当前工作目录。</span><br><span class="line">(2)    运行ls –l命令，理解各字段含义。</span><br><span class="line">(3)    使用cd命令，将工作目录改到（/）上。</span><br><span class="line">运行ls –l命令，结合文件系统的知识，了解各目录的作用。</span><br><span class="line">(5)    直接使用cd命令，或到哪里了？用pwd验证。</span><br><span class="line">(6)    用mkdir在根目录下建立一个子目录subdir。在用户主目录下建立可以吗？</span><br><span class="line">(7)    将工作目录改到subdir下。</span><br><span class="line">4．  文件操作：</span><br><span class="line">(1)    验证当前工作目录在subdir。</span><br><span class="line">(2)    运行date &gt; file1，然后运行cat file1，看到什么信息？</span><br><span class="line">(3)    运行cat subdir，会有什么结果？为什么？</span><br><span class="line">(4)    利用man命令显示date命令的使用说明。</span><br><span class="line">(5)    运行man date &gt;&gt; file1，看到什么？ 运行cat file1，看到什么？</span><br><span class="line">(6)    用vim 建立用户目录下的ex文件，输入一些内容。</span><br><span class="line">(8)    显示file1的前十行，后十行。</span><br><span class="line">(9)    运行cp file1 file2，然后ls –l，看到什么？ 运行mv file2 file3，然后ls –l，看到什么？ 运行cat f*，结果怎样？</span><br><span class="line">(10)   运行rm file3，然后ls –l，结果如何？</span><br><span class="line">(11)   更改file1的文件所属的用户组为root。</span><br></pre></td></tr></table></figure>
 <h2 id="拓展阅读"><a href="#拓展阅读" class="headerlink" title="拓展阅读"></a>拓展阅读</h2><ul>
-<li><a href="https://wiki.archlinux.org/index.php/Users_and_groups_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="external">Linux Users and Groups(中文版)</a>)</li>
-<li><a href="https://wujin.gitbooks.io/-linux-wu/content/" target="_blank" rel="external">一些常用的linux命令-gitbook</a></li>
-<li><a href="http://vim-adventures.com/" target="_blank" rel="external">vim adventures - Learning VIM while playing a game</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Users_and_groups_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">Linux Users and Groups(中文版)</a>)</li>
+<li><a href="https://wujin.gitbooks.io/-linux-wu/content/" target="_blank" rel="noopener">一些常用的linux命令-gitbook</a></li>
+<li><a href="http://vim-adventures.com/" target="_blank" rel="noopener">vim adventures - Learning VIM while playing a game</a></li>
 </ul>
 
           
@@ -765,16 +1328,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/07/07/php-isset-empty/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/07/07/php-isset-empty/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -801,19 +1354,19 @@
       
         
           
-            <p>php的坑<br>程序中经常会使用isset，empty判断数组中的某个key是否存在，有值。数组使用这两个api肯定没有问题的，但是如果是string的话会发生什么事情呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div></pre></td></tr></table></figure></p>
-<p>上面的代码结果是true，还是false？下面呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div></pre></td></tr></table></figure></p>
-<p>如果不是看了官方的文档，打死我我也猜不到。让我们看看官方怎么说的.<br>先是<a href="http://php.net/manual/zh/function.isset.php" target="_blank" rel="external">isset</a></p>
+            <p>php的坑<br>程序中经常会使用isset，empty判断数组中的某个key是否存在，有值。数组使用这两个api肯定没有问题的，但是如果是string的话会发生什么事情呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码结果是true，还是false？下面呢？<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</span><br></pre></td></tr></table></figure></p>
+<p>如果不是看了官方的文档，打死我我也猜不到。让我们看看官方怎么说的.<br>先是<a href="http://php.net/manual/zh/function.isset.php" target="_blank" rel="noopener">isset</a></p>
 <p>PHP 5.4 changes how isset() behaves when passed string offsets.</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0.5</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</div><div class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</div></pre></td></tr></table></figure>
-<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div></pre></td></tr></table></figure></p>
-<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(false)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(true)</div><div class="line">bool(false)</div><div class="line">bool(false)</div></pre></td></tr></table></figure></p>
-<p><a href="http://php.net/manual/zh/function.empty.php" target="_blank" rel="external">empty的表现</a></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0</span>]));</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0'</span>]));</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="number">0.5</span>]));</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</span><br><span class="line">var_dump(<span class="keyword">isset</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</span><br></pre></td></tr></table></figure>
+<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://php.net/manual/zh/function.empty.php" target="_blank" rel="noopener">empty的表现</a></p>
 <p>PHP 5.4 修改了当传入的是字符串偏移量时， empty() 的行为</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0.5</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</div><div class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</div></pre></td></tr></table></figure>
-<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div></pre></td></tr></table></figure></p>
-<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">bool(true)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(false)</div><div class="line">bool(true)</div><div class="line">bool(true)</div></pre></td></tr></table></figure></p>
-<p>是不是很惊讶。直到我看到官方的这个文档我才相信问题真的出现在isset这个api上（哭）。<br>为了让大家都知道有这个问题，特定把这个分享出来，大家在用这两个api的时候，需要认真考虑一下。<br>这也让我想到一个问题，我们是不是应该提供一些工具类(系统也确实有很多Toolkit)，来封装类似这样的api（否则哪天我们真的升级php版本的话那会不会是一个噩梦）。比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">XxxxToolkit</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span>  <span class="title">isset</span><span class="params">($value)</span></span></div><div class="line">    &#123;</div><div class="line">       <span class="keyword">if</span>(is_array($value))&#123;xxxxx&#125;<span class="keyword">else</span>&#123;xxxxx&#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span></span></div><div class="line">&#123;</div><div class="line"> $var = <span class="string">"xxxxx"</span>;</div><div class="line"> XxxxToolkit::isset($var);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$expected_array_got_string = <span class="string">'somestring'</span>;</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'some_key'</span>]));</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0</span>]));</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0'</span>]));</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="number">0.5</span>]));</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0.5'</span>]));</span><br><span class="line">var_dump(<span class="keyword">empty</span>($expected_array_got_string[<span class="string">'0 Mostel'</span>]));</span><br></pre></td></tr></table></figure>
+<p>以上例程在PHP 5.3中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br></pre></td></tr></table></figure></p>
+<p>以上例程在PHP 5.4中的输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bool(true)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(false)</span><br><span class="line">bool(true)</span><br><span class="line">bool(true)</span><br></pre></td></tr></table></figure></p>
+<p>是不是很惊讶。直到我看到官方的这个文档我才相信问题真的出现在isset这个api上（哭）。<br>为了让大家都知道有这个问题，特定把这个分享出来，大家在用这两个api的时候，需要认真考虑一下。<br>这也让我想到一个问题，我们是不是应该提供一些工具类(系统也确实有很多Toolkit)，来封装类似这样的api（否则哪天我们真的升级php版本的话那会不会是一个噩梦）。比如：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XxxxToolkit</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span>  <span class="title">isset</span><span class="params">($value)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(is_array($value))&#123;xxxxx&#125;<span class="keyword">else</span>&#123;xxxxx&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Client</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line"> $var = <span class="string">"xxxxx"</span>;</span><br><span class="line"> XxxxToolkit::isset($var);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>欢迎大家讨论。</p>
 
           
@@ -905,18 +1458,41 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/" itemprop="url" rel="index">
+                    <span itemprop="name">实用技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用技术/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/06/07/多PC同步管理博客/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/06/07/多PC同步管理博客/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -944,19 +1520,25 @@
       
         
           
-            <p>链接：<a href="http://www.imooc.com/article/9707?block_id=tuijian_wz" target="_blank" rel="external">http://www.imooc.com/article/9707?block_id=tuijian_wz</a><br>来源：慕课网</p>
+            <p>链接：<a href="http://www.imooc.com/article/9707?block_id=tuijian_wz" target="_blank" rel="noopener">http://www.imooc.com/article/9707?block_id=tuijian_wz</a><br>来源：慕课网</p>
 <h3 id="A电脑备份博客内容到github"><a href="#A电脑备份博客内容到github" class="headerlink" title="A电脑备份博客内容到github"></a>A电脑备份博客内容到github</h3><ol>
 <li>配置.gitignore文件。进入博客目录文件夹下，找到此文件，用sublime text 打开，在最后增加两行内容/.deploy_git和/public</li>
 <li>初始化仓库。在博客根目录下，在git bash下依次执行git init和git remote add origin <server> <server>为远程仓库地址。</server></server></li>
 <li>同步到远程仓库。gitbash下依次执行以下命令</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git add . <span class="comment">#添加目录下所有文件 </span></div><div class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交并添加更新说明 </span></div><div class="line">$ git push -u origin master <span class="comment">#推送更新到远程仓库</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git add . <span class="comment">#添加目录下所有文件 </span></span><br><span class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交并添加更新说明 </span></span><br><span class="line">$ git push -u origin master <span class="comment">#推送更新到远程仓库</span></span><br></pre></td></tr></table></figure>
 <h3 id="B电脑拉下远程仓库文件"><a href="#B电脑拉下远程仓库文件" class="headerlink" title="B电脑拉下远程仓库文件"></a>B电脑拉下远程仓库文件</h3><p>在B电脑上同样先安装好node、git、ssh、hexo，然后建好hexo文件夹，安装好插件，（然后选做：将备份到远程仓库的文件及文件夹删除），然后执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git init</div><div class="line">$ git remote add origin &lt;server&gt;</div><div class="line">$ git fetch --all</div><div class="line">$ git reset --hard origin/master</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">$ git remote add origin &lt;server&gt;</span><br><span class="line">$ git fetch --all</span><br><span class="line">$ git reset --hard origin/master</span><br></pre></td></tr></table></figure>
 <h3 id="发布博客后同步"><a href="#发布博客后同步" class="headerlink" title="发布博客后同步"></a>发布博客后同步</h3><p>在B电脑发布完博客之后，记得将博客备份同步到远程仓库<br>执行以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git add .</div><div class="line"><span class="comment">#可以用git master 查看更改内容</span></div><div class="line">$ git commit -m <span class="string">"更新信息"</span></div><div class="line">$ git push -u origin master <span class="comment">#以后每次提交可以直接git push</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git add .</span><br><span class="line"><span class="comment">#可以用git master 查看更改内容</span></span><br><span class="line">$ git commit -m <span class="string">"更新信息"</span></span><br><span class="line">$ git push -u origin master <span class="comment">#以后每次提交可以直接git push</span></span><br></pre></td></tr></table></figure>
 <h3 id="平时同步管理"><a href="#平时同步管理" class="headerlink" title="平时同步管理"></a>平时同步管理</h3><p>每次想写博客时，先执行：git pull进行同步更新。发布完文章后同样按照上面的 发布博客后同步 同步到远程仓库。</p>
-<h3 id="平时常用命令整理"><a href="#平时常用命令整理" class="headerlink" title="平时常用命令整理"></a>平时常用命令整理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git pull <span class="comment">#同步更新</span></div><div class="line">$ hexo new post <span class="string">"新建文章"</span> <span class="comment">#简写形式 hexo n "新建文章"</span></div><div class="line">$ hexo clean <span class="comment">#清除旧的public文件夹</span></div><div class="line">$ hexo generate <span class="comment">#生成静态文件 简写形式 hexo g</span></div><div class="line">$ hexo deploy <span class="comment">#发布到github上 简写形式 hexo d</span></div><div class="line">$ git add . <span class="comment">#添加更改文件到缓存区</span></div><div class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交到本地仓库</span></div><div class="line">$ git push -u origin master <span class="comment">#推送到远程仓库进行备份</span></div></pre></td></tr></table></figure>
+<h3 id="平时常用命令整理"><a href="#平时常用命令整理" class="headerlink" title="平时常用命令整理"></a>平时常用命令整理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git pull <span class="comment">#同步更新</span></span><br><span class="line">$ hexo new post <span class="string">"新建文章"</span> <span class="comment">#简写形式 hexo n "新建文章"</span></span><br><span class="line">$ hexo clean <span class="comment">#清除旧的public文件夹</span></span><br><span class="line">$ hexo generate <span class="comment">#生成静态文件 简写形式 hexo g</span></span><br><span class="line">$ hexo server <span class="comment">#本地运行查看 简写形式 hexo s</span></span><br><span class="line">$ hexo deploy <span class="comment">#发布到github上 简写形式 hexo d</span></span><br><span class="line">$ git add . <span class="comment">#添加更改文件到缓存区</span></span><br><span class="line">$ git commit -m <span class="string">"更新说明"</span> <span class="comment">#提交到本地仓库</span></span><br><span class="line">$ git push -u origin master <span class="comment">#推送到远程仓库进行备份</span></span><br></pre></td></tr></table></figure>
+<h3 id="解决hexo神烦的DTraceProviderBindings-MODULE-NOT-FOUND"><a href="#解决hexo神烦的DTraceProviderBindings-MODULE-NOT-FOUND" class="headerlink" title="解决hexo神烦的DTraceProviderBindings MODULE_NOT_FOUND"></a>解决hexo神烦的DTraceProviderBindings MODULE_NOT_FOUND</h3><p>原文：<a href="http://kikoroc.com/2016/05/04/resolve-hexo-DTraceProviderBindings-MODULE-NOT-FOUND.html" target="_blank" rel="noopener">http://kikoroc.com/2016/05/04/resolve-hexo-DTraceProviderBindings-MODULE-NOT-FOUND.html</a></p>
+<h4 id="hexo报错"><a href="#hexo报错" class="headerlink" title="hexo报错"></a>hexo报错</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; [Error: Cannot find module &apos;./build/Release/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br><span class="line">&#123; [Error: Cannot find module &apos;./build/default/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br><span class="line">&#123; [Error: Cannot find module &apos;./build/Debug/DTraceProviderBindings&apos;] code: &apos;MODULE_NOT_FOUND&apos; &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h4><p>卸载后重装 hexo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall hexo</span><br><span class="line">$ npm install hexo --no-optional</span><br></pre></td></tr></table></figure></p>
+<p>还是有问题<br>其实hexo暂时并没有用到dtrace-prodider，仅仅是报错而已，hexo的命令还是能执行，但对于强迫症来说，简直无法忍受。</p>
+<p>一番折腾之后，我找到了适合我的解决办法，重装hexo-cli:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall hexo-cli -g</span><br><span class="line">$ npm install hexo-cli -g</span><br></pre></td></tr></table></figure></p>
+
           
         
       
@@ -1049,16 +1631,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/27/php-develop-environment-for-linux/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/27/php-develop-environment-for-linux/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1086,57 +1658,57 @@
         
           
             <p>本文将讲述PHP-FPM、Nginx、MySQL在Ubuntu 14.04/16.04下的安装及配置。PHP-FPM/Nginx/MySQL的关系如下图所示。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">               ---------               -----------          ---------</div><div class="line">浏览器-------&gt; | Nginx | ---FastCGI--&gt; | PHP-FPM | -------&gt; | MySQL |</div><div class="line">               ---------               -----------          ---------</div><div class="line">               ------------------------------------------------------</div><div class="line">               |                  Linux Server                      |</div><div class="line">               ------------------------------------------------------</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">               ---------               -----------          ---------</span><br><span class="line">浏览器-------&gt; | Nginx | ---FastCGI--&gt; | PHP-FPM | -------&gt; | MySQL |</span><br><span class="line">               ---------               -----------          ---------</span><br><span class="line">               ------------------------------------------------------</span><br><span class="line">               |                  Linux Server                      |</span><br><span class="line">               ------------------------------------------------------</span><br></pre></td></tr></table></figure>
 <h2 id="配置Ubuntu的软件源"><a href="#配置Ubuntu的软件源" class="headerlink" title="配置Ubuntu的软件源"></a>配置Ubuntu的软件源</h2><p>因为Ubuntu默认的软件源，服务器不在国内，装起软件来会比较慢，所以得先将源改为国内的。</p>
 <ul>
 <li><p>备份源配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.raw</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.raw</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>更新配置文件<br>Ubuntu 14.04 使用以下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">echo &quot;</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">&quot; | sudo tee /etc/apt/sources.list</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br><span class="line">&quot; | sudo tee /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使新的配置文件生效</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="更新系统软件"><a href="#更新系统软件" class="headerlink" title="更新系统软件"></a>更新系统软件</h2><ul>
 <li><p>更新</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get upgrade</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>移除不再需要的软件包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get autoremove</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get autoremove</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>系统重启</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo reboot</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install nginx</div></pre></td></tr></table></figure>
-<h2 id="验证Nginx安装是否成功"><a href="#验证Nginx安装是否成功" class="headerlink" title="验证Nginx安装是否成功"></a>验证Nginx安装是否成功</h2><p>在浏览器中打开 <a href="http://localhost" target="_blank" rel="external">http://localhost</a> 出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Welcome to nginx!</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<h2 id="验证Nginx安装是否成功"><a href="#验证Nginx安装是否成功" class="headerlink" title="验证Nginx安装是否成功"></a>验证Nginx安装是否成功</h2><p>在浏览器中打开 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to nginx!</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>表示安装成功了。</p>
-<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server</div></pre></td></tr></table></figure>
+<h2 id="安装MySQL"><a href="#安装MySQL" class="headerlink" title="安装MySQL"></a>安装MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br></pre></td></tr></table></figure>
 <p>安装的时候会询问你设置root的密码，请直接按回车，即设置密码为空。</p>
-<h2 id="验证MySQL是否安装成功"><a href="#验证MySQL是否安装成功" class="headerlink" title="验证MySQL是否安装成功"></a>验证MySQL是否安装成功</h2><p>在命令行输入<code>mysql -uroot -hlocalhost</code>，出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</div><div class="line">Your MySQL connection id is 8</div><div class="line">Server version: 5.7.12-0ubuntu1.1 (Ubuntu)</div><div class="line"></div><div class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</div><div class="line"></div><div class="line">Oracle is a registered trademark of Oracle Corporation and/or its</div><div class="line">affiliates. Other names may be trademarks of their respective</div><div class="line">owners.</div><div class="line"></div><div class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</div><div class="line"></div><div class="line">mysql&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="验证MySQL是否安装成功"><a href="#验证MySQL是否安装成功" class="headerlink" title="验证MySQL是否安装成功"></a>验证MySQL是否安装成功</h2><p>在命令行输入<code>mysql -uroot -hlocalhost</code>，出现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 8</span><br><span class="line">Server version: 5.7.12-0ubuntu1.1 (Ubuntu)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2016, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure></p>
 <p>表示安装成功！ 输入<code>exit 回车</code>，退出mysql。</p>
-<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install php5 php5-cli php5-curl php5-fpm php5-intl php5-mcrypt php5-mysqlnd php5-gd</div></pre></td></tr></table></figure>
-<p>创建<code>/var/www</code>目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo mkdir /var/www</div><div class="line">sudo chown -Rf YOUR_USER:YOU_GROUP /var/www</div></pre></td></tr></table></figure></p>
-<p>安装VIM:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install vim</div></pre></td></tr></table></figure></p>
-<p>修改配置文件<code>vim /etc/nginx/sites-enabled/default</code>，开启PHP相关参数。将配置替换为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">    listen 80 default_server;</div><div class="line">    listen [::]:80 default_server ipv6only=on;</div><div class="line"></div><div class="line">    root /var/www;</div><div class="line"></div><div class="line">    index index.html index.htm;</div><div class="line"></div><div class="line">    server_name localhost;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">        try_files $uri $uri/ =404;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    location ~ \.php$ &#123;</div><div class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</div><div class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</div><div class="line">        fastcgi_index index.php;</div><div class="line">        include fastcgi_params;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>创建测试脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo &quot;&lt;?php</div><div class="line">phpinfo();&quot; &gt; /var/www/phpinfo.php</div></pre></td></tr></table></figure></p>
-<p>浏览器打开：<br><a href="http://localhost/phpinfo.php" target="_blank" rel="external">http://localhost/phpinfo.php</a></p>
-<p>安装phpMyAdmin：<br>进入www目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-all-languages.zip</div><div class="line">tar -zxvf phpMyAdmin-4.6.5.2-all-languages.zip</div><div class="line">mv phpMyAdmin-4.6.5.2-all-languages.zip phpMyAdmin</div></pre></td></tr></table></figure></p>
-<p>浏览器打开：<br><a href="http://localhost/phpMyAdmin/index.php" target="_blank" rel="external">http://localhost/phpMyAdmin/index.php</a><br>出现页面  输入帐号root密码  进入<br>出现PHP相关信息，表明安装成功。</p>
-<h2 id="开发环境下，开启PHP的错误信息显示"><a href="#开发环境下，开启PHP的错误信息显示" class="headerlink" title="开发环境下，开启PHP的错误信息显示"></a>开发环境下，开启PHP的错误信息显示</h2><p>编辑<code>sudo vim /etc/php5/fpm/php.ini</code>，找到相应配置，修改为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">error_reporting = E_ALL</div><div class="line">display_errors = On</div><div class="line">display_startup_errors = On</div></pre></td></tr></table></figure></p>
-<p>重启php-fpm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service php5-fpm restart</div></pre></td></tr></table></figure></p>
+<h2 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php5 php5-cli php5-curl php5-fpm php5-intl php5-mcrypt php5-mysqlnd php5-gd</span><br></pre></td></tr></table></figure>
+<p>创建<code>/var/www</code>目录：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/www</span><br><span class="line">sudo chown -Rf YOUR_USER:YOU_GROUP /var/www</span><br></pre></td></tr></table></figure></p>
+<p>安装VIM:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure></p>
+<p>修改配置文件<code>vim /etc/nginx/sites-enabled/default</code>，开启PHP相关参数。将配置替换为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80 default_server;</span><br><span class="line">    listen [::]:80 default_server ipv6only=on;</span><br><span class="line"></span><br><span class="line">    root /var/www;</span><br><span class="line"></span><br><span class="line">    index index.html index.htm;</span><br><span class="line"></span><br><span class="line">    server_name localhost;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        try_files $uri $uri/ =404;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    location ~ \.php$ &#123;</span><br><span class="line">        fastcgi_split_path_info ^(.+\.php)(/.+)$;</span><br><span class="line">        fastcgi_pass unix:/var/run/php5-fpm.sock;</span><br><span class="line">        fastcgi_index index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建测试脚本：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;&lt;?php</span><br><span class="line">phpinfo();&quot; &gt; /var/www/phpinfo.php</span><br></pre></td></tr></table></figure></p>
+<p>浏览器打开：<br><a href="http://localhost/phpinfo.php" target="_blank" rel="noopener">http://localhost/phpinfo.php</a></p>
+<p>安装phpMyAdmin：<br>进入www目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://files.phpmyadmin.net/phpMyAdmin/4.6.5.2/phpMyAdmin-4.6.5.2-all-languages.zip</span><br><span class="line">tar -zxvf phpMyAdmin-4.6.5.2-all-languages.zip</span><br><span class="line">mv phpMyAdmin-4.6.5.2-all-languages.zip phpMyAdmin</span><br></pre></td></tr></table></figure></p>
+<p>浏览器打开：<br><a href="http://localhost/phpMyAdmin/index.php" target="_blank" rel="noopener">http://localhost/phpMyAdmin/index.php</a><br>出现页面  输入帐号root密码  进入<br>出现PHP相关信息，表明安装成功。</p>
+<h2 id="开发环境下，开启PHP的错误信息显示"><a href="#开发环境下，开启PHP的错误信息显示" class="headerlink" title="开发环境下，开启PHP的错误信息显示"></a>开发环境下，开启PHP的错误信息显示</h2><p>编辑<code>sudo vim /etc/php5/fpm/php.ini</code>，找到相应配置，修改为如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">error_reporting = E_ALL</span><br><span class="line">display_errors = On</span><br><span class="line">display_startup_errors = On</span><br></pre></td></tr></table></figure></p>
+<p>重启php-fpm:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service php5-fpm restart</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装SublimeText-3（此步骤可能安装不了，可以到网上自行下载）"><a href="#安装SublimeText-3（此步骤可能安装不了，可以到网上自行下载）" class="headerlink" title="安装SublimeText 3（此步骤可能安装不了，可以到网上自行下载）"></a>安装SublimeText 3（此步骤可能安装不了，可以到网上自行下载）</h2><p>SublimeText 3 是目前最流行的开发编辑器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -y ppa:webupd8team/sublime-text-3</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y sublime-text-installer</div></pre></td></tr></table></figure>
-<h2 id="设置SublimeText-3-等宽字体"><a href="#设置SublimeText-3-等宽字体" class="headerlink" title="设置SublimeText 3 等宽字体"></a>设置SublimeText 3 等宽字体</h2><p>打开菜单<code>Preferences -&gt; Setting-User</code>，修改内容，并保存：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;font_face&quot;: &quot;Ubuntu Mono&quot;,</div><div class="line">    &quot;font_size&quot;: 12,</div><div class="line">    &quot;highlight_line&quot;: true,</div><div class="line">    &quot;translate_tabs_to_spaces&quot;: true</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository -y ppa:webupd8team/sublime-text-3</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y sublime-text-installer</span><br></pre></td></tr></table></figure>
+<h2 id="设置SublimeText-3-等宽字体"><a href="#设置SublimeText-3-等宽字体" class="headerlink" title="设置SublimeText 3 等宽字体"></a>设置SublimeText 3 等宽字体</h2><p>打开菜单<code>Preferences -&gt; Setting-User</code>，修改内容，并保存：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;font_face&quot;: &quot;Ubuntu Mono&quot;,</span><br><span class="line">    &quot;font_size&quot;: 12,</span><br><span class="line">    &quot;highlight_line&quot;: true,</span><br><span class="line">    &quot;translate_tabs_to_spaces&quot;: true</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="安装输入法Fcitx"><a href="#安装输入法Fcitx" class="headerlink" title="安装输入法Fcitx"></a>安装输入法Fcitx</h2><p>因为fcitx输入法能在SublimeText 3下输入中文。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository -y ppa:fcitx-team/nightly</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin</div><div class="line">sudo apt-get install -y build-essential libgtk2.0-dev</div><div class="line">sudo apt-get install -y fcitx-table-all</div><div class="line">sudo apt-get install im-switch</div><div class="line">im-switch -s fcitx -z default</div></pre></td></tr></table></figure>
-<p>如无im-switch这个命令，则执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">im-config -n fcitx</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository -y ppa:fcitx-team/nightly</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install -y fcitx fcitx-config-gtk fcitx-sunpinyin fcitx-googlepinyin fcitx-module-cloudpinyin</span><br><span class="line">sudo apt-get install -y build-essential libgtk2.0-dev</span><br><span class="line">sudo apt-get install -y fcitx-table-all</span><br><span class="line">sudo apt-get install im-switch</span><br><span class="line">im-switch -s fcitx -z default</span><br></pre></td></tr></table></figure>
+<p>如无im-switch这个命令，则执行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">im-config -n fcitx</span><br></pre></td></tr></table></figure></p>
 <p>安装完之后，重启电脑。即可使用fcitx输入法，按Ctrl + 空格，调出输入法。</p>
-<h2 id="解决SublimeText-3-中文输入法问题"><a href="#解决SublimeText-3-中文输入法问题" class="headerlink" title="解决SublimeText 3 中文输入法问题"></a>解决SublimeText 3 中文输入法问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd /opt/sublime_text/</div><div class="line">sudo wget https://github.com/lyfeyaj/sublime-text-imfix/raw/master/lib/libsublime-imfix.so</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sudo mv /usr/bin/subl /usr/bin/subl_raw</div><div class="line"></div><div class="line">echo &quot;</div><div class="line">#!/bin/sh</div><div class="line">export LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so</div><div class="line">exec /opt/sublime_text/sublime_text \&quot;\$@\&quot;&quot;  | sudo tee /usr/bin/subl </div><div class="line"></div><div class="line">sudo chmod a+x /usr/bin/subl</div></pre></td></tr></table></figure>
-<p>编辑<code>vim /usr/share/applications/sublime_text.desktop</code>，将内容替换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[Desktop Entry]</div><div class="line">Version=1.0</div><div class="line">Type=Application</div><div class="line">Name=Sublime Text</div><div class="line">GenericName=Text Editor</div><div class="line">Comment=Sophisticated text editor for code, markup and prose</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text %F&quot;</div><div class="line">Terminal=false</div><div class="line">MimeType=text/plain;</div><div class="line">Icon=sublime-text</div><div class="line">Categories=TextEditor;Development;</div><div class="line">StartupNotify=true</div><div class="line">Actions=Window;Document;</div><div class="line"></div><div class="line">[Desktop Action Window]</div><div class="line">Name=New Window</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text -n&quot;</div><div class="line">OnlyShowIn=Unity;</div><div class="line"></div><div class="line">[Desktop Action Document]</div><div class="line">Name=New File</div><div class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file&quot;</div><div class="line">OnlyShowIn=Unity;</div></pre></td></tr></table></figure></p>
+<h2 id="解决SublimeText-3-中文输入法问题"><a href="#解决SublimeText-3-中文输入法问题" class="headerlink" title="解决SublimeText 3 中文输入法问题"></a>解决SublimeText 3 中文输入法问题</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/sublime_text/</span><br><span class="line">sudo wget https://github.com/lyfeyaj/sublime-text-imfix/raw/master/lib/libsublime-imfix.so</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sudo mv /usr/bin/subl /usr/bin/subl_raw</span><br><span class="line"></span><br><span class="line">echo &quot;</span><br><span class="line">#!/bin/sh</span><br><span class="line">export LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so</span><br><span class="line">exec /opt/sublime_text/sublime_text \&quot;\$@\&quot;&quot;  | sudo tee /usr/bin/subl </span><br><span class="line"></span><br><span class="line">sudo chmod a+x /usr/bin/subl</span><br></pre></td></tr></table></figure>
+<p>编辑<code>vim /usr/share/applications/sublime_text.desktop</code>，将内容替换为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[Desktop Entry]</span><br><span class="line">Version=1.0</span><br><span class="line">Type=Application</span><br><span class="line">Name=Sublime Text</span><br><span class="line">GenericName=Text Editor</span><br><span class="line">Comment=Sophisticated text editor for code, markup and prose</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text %F&quot;</span><br><span class="line">Terminal=false</span><br><span class="line">MimeType=text/plain;</span><br><span class="line">Icon=sublime-text</span><br><span class="line">Categories=TextEditor;Development;</span><br><span class="line">StartupNotify=true</span><br><span class="line">Actions=Window;Document;</span><br><span class="line"></span><br><span class="line">[Desktop Action Window]</span><br><span class="line">Name=New Window</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text -n&quot;</span><br><span class="line">OnlyShowIn=Unity;</span><br><span class="line"></span><br><span class="line">[Desktop Action Document]</span><br><span class="line">Name=New File</span><br><span class="line">Exec=bash -c &quot;LD_PRELOAD=/opt/sublime_text/libsublime-imfix.so exec /opt/sublime_text/sublime_text --command new_file&quot;</span><br><span class="line">OnlyShowIn=Unity;</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1230,16 +1802,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/27/PHP获取时间的坑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/27/PHP获取时间的坑/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -1266,146 +1828,16 @@
       
         
           
-            <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="external">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
-<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</div><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
+            <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="noopener">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
+<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</span><br><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
 <p>Warning：请注意，这里有一个坑，当当前月为大月时，当天的时间为最后一天，如2017-05-31，加一个月取第一天并不会得到下一个月的第一天，而会顺延到下下月的某一天（取决于多的天数），所以正确的应该是，当前月第一天加一个月<br>以下是正确的写法：</p>
-<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="external">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/first-blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhuxiaoyun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诸笑云的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/12/first-blog/" itemprop="url">我的第一篇博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-12T10:45:11+08:00">
-                2017-05-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/12/first-blog/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/12/first-blog/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>你好，欢迎来到我的个人技术博客。</p>
+<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="noopener">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
 
           
         
@@ -1444,6 +1876,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1487,12 +1923,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -1673,35 +2118,25 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
-
+  
 
 
 
@@ -1721,7 +2156,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {

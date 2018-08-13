@@ -85,6 +85,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/27/PHP获取时间的坑/index.html">
 <meta property="og:site_name" content="诸笑云的博客">
 <meta property="og:description" content="php的 date() 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-03-06T08:18:33.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP获取时间的坑">
@@ -185,6 +186,36 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -308,16 +339,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/05/27/PHP获取时间的坑/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/27/PHP获取时间的坑/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -342,16 +363,16 @@
       
 
       
-        <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="external">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
-<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</div><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</div></pre></td></tr></table></figure>
+        <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="noopener">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
+<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</span><br><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
 <p>Warning：请注意，这里有一个坑，当当前月为大月时，当天的时间为最后一天，如2017-05-31，加一个月取第一天并不会得到下一个月的第一天，而会顺延到下下月的某一天（取决于多的天数），所以正确的应该是，当前月第一天加一个月<br>以下是正确的写法：</p>
-<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</div></pre></td></tr></table></figure>
-<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="external">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
+<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="noopener">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
 
       
     </div>
@@ -418,13 +439,6 @@
           
 
   
-    <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2017/05/27/PHP获取时间的坑/"
-           data-title="PHP获取时间的坑" data-url="http://yoursite.com/2017/05/27/PHP获取时间的坑/">
-      </div>
-    </div>
-
-  
 
 
 
@@ -472,12 +486,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -678,35 +701,25 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"your-duoshuo-shortname"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
-
+  
 
 
 
@@ -726,7 +739,7 @@
     var isfetched = false;
     var isXml = true;
     // Search DB path;
-    var search_path = "search.xml";
+    var search_path = "";
     if (search_path.length === 0) {
       search_path = "search.xml";
     } else if (/json$/i.test(search_path)) {
