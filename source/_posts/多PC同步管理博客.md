@@ -1,7 +1,12 @@
 ---
 title: 多PC同步管理博客
 date: 2017-06-07 17:14:53
-tags:
+categories:  #这里写的分类会自动汇集到 categories 页面上，分类可以多级，Hexo不支持指定多个同级分类，所以个人博客将是实用技术的二级分类
+- 实用技术 # 一级分类
+- 个人博客 # 二级分类 
+tags:   #这里写的标签会自动汇集到 tags 页面上
+- 实用 #可配置多个标签，注意格式
+- 个人博客
 ---
 链接：http://www.imooc.com/article/9707?block_id=tuijian_wz
 来源：慕课网
@@ -48,8 +53,37 @@ $ git pull #同步更新
 $ hexo new post "新建文章" #简写形式 hexo n "新建文章"
 $ hexo clean #清除旧的public文件夹
 $ hexo generate #生成静态文件 简写形式 hexo g
+$ hexo server #本地运行查看 简写形式 hexo s
 $ hexo deploy #发布到github上 简写形式 hexo d
 $ git add . #添加更改文件到缓存区
 $ git commit -m "更新说明" #提交到本地仓库
 $ git push -u origin master #推送到远程仓库进行备份
+```
+
+### 解决hexo神烦的DTraceProviderBindings MODULE_NOT_FOUND
+
+原文：http://kikoroc.com/2016/05/04/resolve-hexo-DTraceProviderBindings-MODULE-NOT-FOUND.html
+
+#### hexo报错
+```
+{ [Error: Cannot find module './build/Release/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' }
+{ [Error: Cannot find module './build/default/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' }
+{ [Error: Cannot find module './build/Debug/DTraceProviderBindings'] code: 'MODULE_NOT_FOUND' }
+```
+
+#### 解决办法
+
+卸载后重装 hexo
+```
+$ npm uninstall hexo
+$ npm install hexo --no-optional
+```
+
+还是有问题
+其实hexo暂时并没有用到dtrace-prodider，仅仅是报错而已，hexo的命令还是能执行，但对于强迫症来说，简直无法忍受。
+
+一番折腾之后，我找到了适合我的解决办法，重装hexo-cli:
+```
+$ npm uninstall hexo-cli -g
+$ npm install hexo-cli -g
 ```

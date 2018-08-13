@@ -7,7 +7,10 @@ title: 诸笑云的博客
 subtitle: 简单、快乐、技术、分享
 description: zhuxiaoyun
 author: zhuxiaoyun
+<<<<<<< HEAD
 # language: zh-CN
+=======
+>>>>>>> master
 language: zh-Hans
 timezone: Asia/Shanghai
 
