@@ -400,8 +400,8 @@
       
         
           
-            <h3 id="查看当前路径"><a href="#查看当前路径" class="headerlink" title="查看当前路径"></a>查看当前路径</h3><p>pwd</p>
-<h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><p>who</p>
+            <h3 id="查看当前路径"><a href="#查看当前路径" class="headerlink" title="查看当前路径"></a>查看当前路径</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pwd</span><br></pre></td></tr></table></figure>
+<h3 id="查看当前用户"><a href="#查看当前用户" class="headerlink" title="查看当前用户"></a>查看当前用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">who</span><br></pre></td></tr></table></figure>
 <h3 id="ll列出当前目录下-以la开头的文件"><a href="#ll列出当前目录下-以la开头的文件" class="headerlink" title="ll列出当前目录下 以la开头的文件"></a>ll列出当前目录下 以la开头的文件</h3><p>1、直接使用通配符<br>ll la<em><br>2、使用管道，将ls的输出送入grep这个程序来实现<br>ls -1 | grep “^la”<br>-1选项表示将列出的所有文件排成一列，方便grep的匹配（grep按行匹配）。<br>ls -a | grep “la\</em>“</p>
 <h3 id="查找文件"><a href="#查找文件" class="headerlink" title="查找文件"></a>查找文件</h3><p>find /etc -name “la*“<br>查找/etc目录下，以”la”开头命名的文件，/ 表示全局</p>
 <h3 id="grep-查看匹配日志的前后几行"><a href="#grep-查看匹配日志的前后几行" class="headerlink" title="grep 查看匹配日志的前后几行"></a>grep 查看匹配日志的前后几行</h3><p>如果在只是想匹配模式的上下几行，grep可以实现。</p>
