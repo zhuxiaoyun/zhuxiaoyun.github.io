@@ -576,13 +576,19 @@ crontab -e  编辑定时任务
 <p>2、没有输出日志，检查执行日志<br>    /var/log/crontablog</p>
 <p>有执行日志，很明显，任务计划确实在正常执行着，看来问题在脚本上了。</p>
 <h4 id="检查脚本"><a href="#检查脚本" class="headerlink" title="检查脚本"></a>检查脚本</h4><p>1、直接执行<br>检查脚本第一步，直接按照 crontab 里面的命令行，执行脚本：<br>直接执行成功，而放到 crontab 就失败，经验告诉我肯定的脚本环境变量有问题了！</p>
-<p>2、环境变量<br>于是在脚本里面载入环境变量：</p>
+<p>2、环境变量<br>于是在脚本里面载入环境变量（这步没看懂是修改哪个脚本）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#!/bin/bash</span><br><span class="line">#先载入环境变量</span><br><span class="line">source /etc/profile</span><br><span class="line">#其他代码不变</span><br></pre></td></tr></table></figure>
 <p>结果还是不行</p>
 <p>3、系统邮件<br>经验告诉我，crontab 执行失败，如果没有屏蔽错误的话，会产生一个系统邮件，</p>
 <p>位置在 /var/spool/mail/root</p>
-<p>cat /var/spool/mail/root 发现是否有报错</p>
-<h4 id="分析总结"><a href="#分析总结" class="headerlink" title="分析总结"></a>分析总结</h4><p>Linux 系统里面计划任务，crontab 没有如期执行这是运维工作中比较常见的一种故障了，根据经验，大家可以从如下角度分析解决:</p>
+<p>cat /var/spool/mail/root 发现有报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/env: php: No such file or directory</span><br></pre></td></tr></table></figure>
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>很明显是环境变量的问题了，用了以下方法修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br><span class="line">export $PATH:/usr/local/bin/php</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></p>
+<p>可是仍然不行，这个方法是修改全局变量的，并不能修改crontab里的环境变量<br>可以直接编辑crontab脚本修改环境变量PATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line">SHELL=/bin/sh</span><br><span class="line">PATH=/usr/bin:/usr/sbin:/sbin:/bin:/usr/lib/news/bin:/usr/local/bin</span><br></pre></td></tr></table></figure>
+<p>保存之后，解决了。</p>
+<p><strong><em> 注意，其间我查资料，有让我编辑 vim /etc/crontab 文件修改变量，事实证明没有用，crontab -e 和直接修改/etc/crontab不一样 </em></strong></p>
+<h3 id="分析总结"><a href="#分析总结" class="headerlink" title="分析总结"></a>分析总结</h3><p>Linux 系统里面计划任务，crontab 没有如期执行这是运维工作中比较常见的一种故障了，根据经验，大家可以从如下角度分析解决:</p>
 <p>①、检查 crontab 服务是否正常<br>这个一般通过查看日志来检查，也就是前文提到的 /var/log/cron 或 /var/log/messages，如果里面没有发现执行记录，那么可以重启下这个服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.在系统中有service这个命令时：</span><br><span class="line">service crond stop | start | restart</span><br><span class="line">2.linux发行版本没有service这个命令时：</span><br><span class="line">/etc/init.d/cron stop | start | restart</span><br></pre></td></tr></table></figure></p>
 <p>②、检查脚本的执行权限<br>一般来说，在 crontab 中建议使用 sh 或 bash 来执行 shell 脚本，避免因脚本文件的执行权限丢失导致任务失败。当然，最直接检查就是人工直接复制 crontab -l 里面的命令行测试结果。</p>
 <p>③、检查脚本需要用到的变量<br>和上文一样，通常来说从 crontab 里面执行的脚本和人工执行的环境变量是不一样的，所以对于一些系统变量，建议写绝对路径，或使用 witch 动态获取，比如  sudo_bin=$(which sudo) 就能拿到 sudo 在当前系统的绝对路径了。</p>
