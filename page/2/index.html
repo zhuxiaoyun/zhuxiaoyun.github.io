@@ -296,6 +296,135 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/27/PHP获取时间的坑/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/27/PHP获取时间的坑/" itemprop="url">PHP获取时间的坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-27T14:25:31+08:00">
+                2017-05-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>php的 <a href="http://www.php.net/manual/zh/function.date.php" target="_blank" rel="noopener">date()</a> 函数，string date ( string $format [, int $timestamp ] )，可以格式化一个<br>本地时间或日期，返回将整数timestamp按照给定字串而产生的字串，如果没有给定时间戳，则使用本地当前时间，即timestamp是可选的，默认值是time()。<br>date()的使用非常灵活，下面介绍使用date()获取当月的第一天、当月的最后一天，下月的第一天、下月的最后一天</p>
+<h3 id="获取当前时间"><a href="#获取当前时间" class="headerlink" title="获取当前时间"></a>获取当前时间</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d'</span>);</span><br><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-d H:i:s'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的第一天"><a href="#获取当前月的第一天" class="headerlink" title="获取当前月的第一天"></a>获取当前月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取当前月的最后一天"><a href="#获取当前月的最后一天" class="headerlink" title="获取当前月的最后一天"></a>获取当前月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天"><a href="#获取下一月的最后一天" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的第一天"><a href="#获取下一月的第一天" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>,  strtotime(<span class="string">'+1 month'</span>));</span><br></pre></td></tr></table></figure>
+<p>Warning：请注意，这里有一个坑，当当前月为大月时，当天的时间为最后一天，如2017-05-31，加一个月取第一天并不会得到下一个月的第一天，而会顺延到下下月的某一天（取决于多的天数），所以正确的应该是，当前月第一天加一个月<br>以下是正确的写法：</p>
+<h3 id="获取下一月的第一天-1"><a href="#获取下一月的第一天-1" class="headerlink" title="获取下一月的第一天"></a>获取下一月的第一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-01'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="获取下一月的最后一天-1"><a href="#获取下一月的最后一天-1" class="headerlink" title="获取下一月的最后一天"></a>获取下一月的最后一天</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> date(<span class="string">'Y-m-t'</span>, strtotime(<span class="string">'+1 month'</span>, strtotime(date(<span class="string">'Y-m-01'</span>)))).<span class="string">"&lt;br&gt;"</span>;</span><br></pre></td></tr></table></figure>
+<p>同样，php的Symfony框架提供的<a href="https://twig.sensiolabs.org/doc/2.x/filters/date_modify.html" target="_blank" rel="noopener">date_modify()</a>，twig扩展也有同样的问题，给遇到坑的小伙伴们助攻！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/12/first-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -453,7 +582,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -464,7 +593,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
