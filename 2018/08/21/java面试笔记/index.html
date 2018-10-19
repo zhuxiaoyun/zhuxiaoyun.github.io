@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="实用,面试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="操作系统开发程序–&amp;gt; 操作系统 &amp;lt;– 硬件设备 进程 vs 线程 （Process vs Thread）都是操作系统所要管理的对象内存结构不同，进程之间不能共享内存，线程可以 —内存，如何寻址线程间通信简单，进程间通信需要各种方法 —哪些方法，优劣点 进程间相对独立，有自己独立的内存，里面有很多线程容器 线程：运行的堆、栈PC 下一条指令执行的地址，指向内存TLS  缓冲区溢出 存储硬">
+<meta name="keywords" content="实用,面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java面试笔记">
+<meta property="og:url" content="http://yoursite.com/2018/08/21/java面试笔记/index.html">
+<meta property="og:site_name" content="诸笑云的博客">
+<meta property="og:description" content="操作系统开发程序–&amp;gt; 操作系统 &amp;lt;– 硬件设备 进程 vs 线程 （Process vs Thread）都是操作系统所要管理的对象内存结构不同，进程之间不能共享内存，线程可以 —内存，如何寻址线程间通信简单，进程间通信需要各种方法 —哪些方法，优劣点 进程间相对独立，有自己独立的内存，里面有很多线程容器 线程：运行的堆、栈PC 下一条指令执行的地址，指向内存TLS  缓冲区溢出 存储硬">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-09-05T03:12:13.313Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java面试笔记">
+<meta name="twitter:description" content="操作系统开发程序–&amp;gt; 操作系统 &amp;lt;– 硬件设备 进程 vs 线程 （Process vs Thread）都是操作系统所要管理的对象内存结构不同，进程之间不能共享内存，线程可以 —内存，如何寻址线程间通信简单，进程间通信需要各种方法 —哪些方法，优劣点 进程间相对独立，有自己独立的内存，里面有很多线程容器 线程：运行的堆、栈PC 下一条指令执行的地址，指向内存TLS  缓冲区溢出 存储硬">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/21/java面试笔记/"/>
+
+
+
+
+
+  <title>java面试笔记 | 诸笑云的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">诸笑云的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">简单、快乐、技术、分享</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/21/java面试笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java面试笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-21T09:21:40+08:00">
+                2018-08-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用工具/" itemprop="url" rel="index">
+                    <span itemprop="name">实用工具</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/实用工具/个人博客/" itemprop="url" rel="index">
+                    <span itemprop="name">个人博客</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><p>开发程序–&gt; 操作系统 &lt;– 硬件设备</p>
+<h3 id="进程-vs-线程-（Process-vs-Thread）"><a href="#进程-vs-线程-（Process-vs-Thread）" class="headerlink" title="进程 vs 线程 （Process vs Thread）"></a>进程 vs 线程 （Process vs Thread）</h3><p>都是操作系统所要管理的对象<br>内存结构不同，进程之间不能共享内存，线程可以 —内存，如何寻址<br>线程间通信简单，进程间通信需要各种方法 —哪些方法，优劣点</p>
+<p>进程间相对独立，有自己独立的内存，里面有很多线程<br>容器</p>
+<p>线程：<br>运行的<br>堆、栈<br>PC 下一条指令执行的地址，指向内存<br>TLS </p>
+<p>缓冲区溢出</p>
+<h3 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h3><p>硬盘-&gt;内存-&gt;cpu缓存-&gt;寄存器，存储速度 慢-&gt;快，价格 贵-&gt;便宜</p>
+<p>寻址空间<br>32位，2^32 = 4G内存 寻址空间<br>64位，-&gt; ~10^19 bytes<br>64位JVM -&gt; 可使用更大内存，需重新编译</p>
+<h2 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h2><p>不可靠的线路上，建立安全可靠的<br>七层架构<br>数据链路层-&gt;网络层（ip协议，ip地址）-&gt; 传输层 （TCP/UCP协议，建立连接）-&gt;应用层（协议，Http,stp）</p>
+<p>网络传输<br>不安全：<br>    丢包，重复包<br>    出错<br>    乱序<br>    中间人攻击<br>    窃取<br>    篡改</p>
+<p>滑动窗口</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>关系型数据库：<br>基于关系代数理论<br>二维表<br>缺点：表结构不直观，实现复杂，速度慢<br>优点：健壮性高，社区庞大</p>
+<p>事务和乐观锁</p>
+<h2 id="程序设计语言"><a href="#程序设计语言" class="headerlink" title="程序设计语言"></a>程序设计语言</h2><h3 id="不同角度："><a href="#不同角度：" class="headerlink" title="不同角度："></a>不同角度：</h3><p>类型检查：<br>    编译时：C,C++,java,Go…<br>    运行时：Python,Perl,JavaScript,Ruby<br>运行/编译的场景：<br>    编译为机器代码运行:C,C++  –&gt; 速度快<br>    编译为中间代码，在虚拟机运行：java, C# –&gt; 可跨平台<br>    解释执行：Python,Perl,JavaScript，解释器上运行<br>编程范式：<br>    面向过程：C,VB<br>    面向对象：Java, C#, C++<br>    函数式：Haskell,Erlang</p>
+<p>比较PHP</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><h4 id="类型基础"><a href="#类型基础" class="headerlink" title="类型基础"></a>类型基础</h4><ol>
+<li>primitive type 基本数据类型<br>byte, short, int, long<br>float, double<br>boolean, char</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">byte：Java中最小的数据类型，在内存中占8位(bit)，即1个字节，取值范围-128~127，默认值0</span><br><span class="line"></span><br><span class="line">short：短整型，在内存中占16位，即2个字节，取值范围-32768~32717，默认值0</span><br><span class="line"></span><br><span class="line">int：整型，用于存储整数，在内在中占32位，即4个字节，取值范围-2^31~2^31-1，默认值0</span><br><span class="line"></span><br><span class="line">long：长整型，在内存中占64位，即8个字节-2^63~2^63-1，默认值0L</span><br><span class="line"></span><br><span class="line">float：浮点型，在内存中占32位，即4个字节，用于存储带小数点的数字（与double的区别在于float类型有效小数点只有6~7位），默认值0</span><br><span class="line"></span><br><span class="line">double：双精度浮点型，用于存储带有小数点的数字，在内存中占64位，即8个字节，默认值0</span><br><span class="line"></span><br><span class="line">char：字符型，用于存储单个字符，占16位，即2个字节，取值范围0~65535，默认值为空</span><br><span class="line"></span><br><span class="line">boolean：布尔类型，占1个字节，用于判断真或假（仅有两个值，即true、false），默认值false</span><br></pre></td></tr></table></figure>
+<p>参考链接 [<a href="https://blog.csdn.net/dubo_csdn/article/details/81384880" target="_blank" rel="noopener">https://blog.csdn.net/dubo_csdn/article/details/81384880</a>]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">boolean   8bit/1byte</span><br><span class="line">byte      8bit/1byte</span><br><span class="line">char      16bit/2byte</span><br><span class="line">short     16bit/2byte</span><br><span class="line">float     32bit/4byte</span><br><span class="line">int       32bit/4byte</span><br><span class="line">long      64bit/8byte</span><br><span class="line">double    64bit/8byte</span><br></pre></td></tr></table></figure>
+<p>32 位int的范围<br>-2^31 ~ 2^31-1<br>0<br>符号位[……..数值]</p>
+<p>浮点数 (+/-)1.xxx * 2^y<br>符号位|指数部分|基数部分<br>浮点数比较<br>BigDecimal</p>
+<ol>
+<li><p>引用数据类型  –&gt; Object派生出的类型<br>包装类型：Boolean，Character，Byte，Short，Integer，Long，Float，Double<br>String, Enum, Array<br>Object…</p>
+</li>
+<li><p>引用类型的装箱和拆箱</p>
+</li>
+</ol>
+<p>例1：<br>Boxing and Unboxing<br>Integer a = 2;                      //Boxing 自动装箱操作，把2装进了箱子, a 指向箱子<br>Integer b = new Integer(2);         //Boxing，同上，b指向箱子<br>int v = a.intValue();               //Unboxing 手动拆箱操作，把数值拿出来<br>int c = 2;<br>Integer d = Integer.valueOf(2);     //手动装箱，把int型转换为Integer，若在-128到127范围，直接返回该对象的引用，否则在堆中重新new 一个。 </p>
+<p>System.out.println(a == b);         // false 两个引用没有引用同一对象<br>System.out.println(a == c);         // true a自动拆箱成int类型再和c比较，拆箱的过程，因为等号一边存在基本类型所以编译器后会把另一边的Integer对象拆箱成int型，这时等号两边比较的就是数值大小<br>System.out.println(a == d);         //true</p>
+<p>new Integer(2) == 2                             //true 自动拆箱比较<br>new Integer(2) == new Integer(2)                //false 没有引用同一对象<br>Integer.valueOf(2) == Integer.valueOf(2)        //true 指向同一缓存中的数据<br>Integer.valueOf(1000) == Integer.valueOf(1000)  //false ，超出数值，重新new对象空间<br>Integer.valueOf(2).intValue() == 2              //true 拆箱操作，数值比较<br>new Integer(2).equals(new Integer(2))           //true 数值比较</p>
+<p>例2：<br>Integer f1 = 100, f2 = 100, f3 = 150, f4 = 150;<br>System.out.println(f1 == f2);       //true<br>System.out.println(f3 == f4);       //false<br>==运算比较的不是值而是引用，装箱的本质，当我们给一个Integer对象赋一个int值的时候，会调用Integer类的静态方法valueOf，如果整型字面量的值在-128到127之间，那么不会new新的Integer对象，而是直接引用常量池中的Integer对象</p>
+<p>参考链接(<a href="https://blog.csdn.net/dawn_after_dark/article/details/74154338" target="_blank" rel="noopener">https://blog.csdn.net/dawn_after_dark/article/details/74154338</a>)</p>
+<ol>
+<li>== 和 equals 判断是否相等<br>除了primitive type是赋值，其他的都是引用<br>值类型<br>用a == b 判断值相等</li>
+</ol>
+<p>引用类型<br>用a == b 判断是否为同一个对象，<br>用a.equals(b), Objects.equals(a,b), 判断值是否相等</p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>整数的默认类型是 int<br>小数的默认类型是 double</p>
+<ol>
+<li>Java自动类型转换和强制转换<br>1）两种类型是彼此兼容的<br>2）转换的目的类型占得空间范围一定要大于转化的源类型<br>　　正向过程：由低字节向高字节自动转换<br>　　byte-&gt;short-&gt;int-&gt;long-&gt;float-&gt;double<br>　　逆向过程：使用强制转换,可能丢失精度。<br>　　int a=(int)3.14;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">byte b = 3;</span><br><span class="line">b = 3 + 7;   </span><br><span class="line">//编译通过，等号右边的是常量，编译器先计算表达式的结果为10，判断10在byte类型的范围之内，于是就把int类型的值强制转换成byte类型赋给b；</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">byte b1 = 3;</span><br><span class="line">byte b2 = 7;</span><br><span class="line">b = b1 + b2;</span><br><span class="line">编译错误，等号右边是两个变量，但是变量的值是不确定的。编译器无法判断是否超出了byte类型的取值范围，没办法进行强制类型转换。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>隐含强制类型转换</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">short b=3;              与               short b=3;  </span><br><span class="line">b+=2;                                    b=b+2;</span><br></pre></td></tr></table></figure>
+<p>b += 2 相当于 b = (short)(b+2);<br>b+=2是可以编译成功的。+=也是一个赋值运算符，在底层是一个动作并且有一个强制转换的一个过程（不用我们自己强转）；<br>b=b+2;不能编译成功，这是两个动作，先求和再赋值，求和时b自动类型提升，求和结果是int类型，但是因为编译器无法判断数值大小，所以无法为我们强制转换类型，所以编译报错</p>
+<p>总结：<br>(1)如果右边是常量，编译器会判断数值大小是否在范围内，如果在就做强制类型转换，不在就报错；</p>
+<p>(2)如果右边是变量，编译器无法判断数值大小，不会做强制类型转换，会报错（可以自己强制转换）；</p>
+<p>(3)+=，-=，*=，/=,%=赋值运算符不管是否在范围内都会做强制类型转换。</p>
+<h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><ol>
+<li>j=j++, j=++j, j++ 和 ++j</li>
+</ol>
+<p>j=j++, 会先保存j的值，再j++，此时确实j增加了，但是最后又把保存的值赋值给了j，所以j的值不变<br>j=++j, 先把j的值增加，此时j值增加了，再保存j的值，再把保存的值赋值给j，所以j值增加<br>j++和++j，j的值都增加</p>
+<h3 id="关键字和保留字"><a href="#关键字和保留字" class="headerlink" title="关键字和保留字"></a>关键字和保留字</h3><p>Java关键字（KeyWord）：对Java的编译器有特殊的意义，他们用来表示一种数据类型或者表示程序的结构。</p>
+<p>Java保留字（Reserved Word）：为Java预留的关键字，现在还没有用到，但在升级版本中可能作为关键字被使用。</p>
+<p>注意：1. goto 和 const 这两个关键字是c++保留的关键字，目前在java中不能使用。（使用时会报错）</p>
+<p>　　　2. 所有的关键字都是小写，如果关键字中任何一个字母大写则不再是关键字。（Java中区分大小写）</p>
+<p>　　　3. then、sizeof、String、NULL、friendly 等都不是关键字，虽然看起来很像（可能因为大小写的关系或者可能是其它语言的关键字但不是Java的）</p>
+<p>50个关键字包含2个保留字：goto, const<br>标志符包含50个关键字和 null, true, false</p>
+<h2 id="编码技巧"><a href="#编码技巧" class="headerlink" title="编码技巧"></a>编码技巧</h2><p>递归控制<br>循环控制<br>边界控制<br>数据结构，树</p>
+<p>链表（单向）：</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><p>类的成员变量 -&gt; 对象状态<br>类的成员函数 -&gt; 对象行为</p>
+<p>类的静态变量<br>类的静态函数<br>没有this引用，静态变量全局唯一一份</p>
+<p>接口与实现<br>继承与封装</p>
+<p>不可变对象<br>泛型</p>
+<p>从用户（终端用户，使用你代码的用户）角度思考问题<br>摒弃完全基于逻辑的思维</p>
+<h3 id="类的特殊函数"><a href="#类的特殊函数" class="headerlink" title="类的特殊函数"></a>类的特殊函数</h3><h4 id="构造函数，和类名称相同，没有返回值"><a href="#构造函数，和类名称相同，没有返回值" class="headerlink" title="构造函数，和类名称相同，没有返回值"></a>构造函数，和类名称相同，没有返回值</h4><h4 id="equals的重写，和hashCode解析"><a href="#equals的重写，和hashCode解析" class="headerlink" title="equals的重写，和hashCode解析"></a>equals的重写，和hashCode解析</h4><p>equals ,比较含有多个成员变量的对象时需要重写</p>
+<p>覆盖equals时需要遵守约定：<br>（对于任何非null的引用值x和y）<br>    自反性，x.equals(x) = true<br>    对称性，x.equals(y) = true, 则y.equals(x) = true<br>    传递性，x.equals(y) = true, y.equals(z), 则x.equals(z)<br>    一致性，多次调用x.equals(y)都一致的返回true，或者false<br>    覆盖equals时总要覆盖hashCode</p>
+<p>== 比较值类型的值是否相等<br>== 比较引用类型是否为同一个对象<br>equals 比较引用类型的值是否相等<br>hashCode -&gt; 返回对象存储地址转化的哈希值，如果重写equals，必须重写hashCode<br>原因：<br>    hashcode不相同，用equals()方法判断的返回的一定为false。<br>    hashcode相同，equals()方法返回值不能确认，可能为true，可能为false。<br>    判断的时候先根据hashcode进行的判断，相同的情况下再根据equals()方法进行判断。如果只重写了equals方法，而不重写hashcode的方法，会造成hashcode的值不同，而equals()方法判断出来的结果为true。</p>
+<p>toString</p>
+<p>employee1 == employee2  ?<br>employee1.equals(employee2)  ?<br>a.equals(b)=true   ==&gt;&gt; a.hashCode() == b.hashCode()<br>(a.equals(b)=true, 必定a.hashCode() == b.hashCode()，反之不一定)</p>
+<p><a href="http://java-min.iteye.com/blog/1416727" target="_blank" rel="noopener">equals和hashCode解析</a></p>
+<h3 id="接口和抽象类"><a href="#接口和抽象类" class="headerlink" title="接口和抽象类"></a>接口和抽象类</h3><p>接口：<br>    从用户（使用实现的代码）角度看问题<br>    不关心具体实现<br>与类相比：<br>    由编译器强制的一个模块间协作的合约（Contract）<br>    无成员变量<br>    成员函数只能申明不能实现<br>public interface className {<br>    void payment(String name, int salary);<br>}</p>
+<p>抽象类:<br>public abstract class className {<br>    abstract void payment(String name, int salary);</p>
+<pre><code>void initalize() {
+
+}
+</code></pre><p>}<br>从实现角度：<br>    抽象类可以有成员变量<br>    抽象类可以有部分实现<br>    抽象类不可以多重继承(extends)，接口可以(多重实现implements)<br>如果父类是抽象类，那么子类必须实现父类中所有的抽象方法</p>
+<h3 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h3><p><em>封装，隐藏了类的内部实现机制，可以在不影响使用的情况下修改类的内部结构，同时也保护了内部数据。对外界而言，它的内部细节是隐藏的，暴露给外界的是它的访问方法。</em></p>
+<p>可见性修饰符的作用范围：<br>private      类内部<br>(默认)       包内部<br>protected    派生类（子类），使用时要加注释<br>public       外部</p>
+<p>尽量 只使用 private 和 public<br>每个文件里至多只能有一个public class,类名称和文件名一样，package 要和路径名一样<br>interface里方法不加任何可见性，就是public，规定的，和类不一样</p>
+<p>派生类中修改封装可见性，面试中会涉及，但实际工作中不建议使用<br>private -&gt; public ? 可以的<br>public -&gt; private ? 不可以的<br>可以增加可见性，但不能减少可见性</p>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>继承，为了重用父类代码<br>    is-a关系，（汽车是一种交通工具）<br>    子类 增加或修改 基类（增加成员变量，函数）<br>构造器不参与继承</p>
+<h3 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h3><p><em>多态，程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用，在编程时并不确定，而在程序运行期间才确定</em><br>不修改源程序代码，就可以让引用变量绑定到不同的类实现上，从而改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</p>
+<p>例子：<br>Manager extends Employee<br>Employee p = new Manager()   //向上转型<br>一个父类可以引用不同的子类，只有在程序运行时才知道引用变量所指向的具体实例对象，如上，引用变量p是Employee类型，但程序运行时指向的是Manager类型</p>
+<p>Java实现多态有三个必要条件：继承、重写、向上转型。<br>1.必须有子类继承父类<br>2.子类重写父类的方法<br>3.父类的引用指向了子类的实例<br>4.对象的行为和子类保持一致<br>参考链接 <a href="http://www.cnblogs.com/chenssy/p/3372798.html" target="_blank" rel="noopener">多态的解释与经典示例</a></p>
+<h3 id="重写和重载"><a href="#重写和重载" class="headerlink" title="重写和重载"></a>重写和重载</h3><p>重写：一般在父类中申明，子类中实现，继承中，在子类要实现的方法中，方法名、返回值、传的参数和父类的一样，但具体实现不一样<br>重载：一般在一个类中，有多个同名方法，但参数不一样（参数类型、参数个数、有无参数）。</p>
+<h3 id="不可变性"><a href="#不可变性" class="headerlink" title="不可变性"></a>不可变性</h3><p>对象创建之后，成员变量不可变<br>不可变对象：<br>    可以引用传递，可以缓存<br>    线程安全，多线程中大家只能读，不能修改</p>
+<p>final关键字：<br>    类申明     -&gt;  类不可以被继承<br>    函数申明   -&gt;  函数不可以在派生类中重写<br>    变量申明   -&gt;  变量不可以指向其他对象，在构造函数初始化的时候或者变量后面指向对象，但可以改变指向对象里的值<br>    primitive type 变量不可以被重新赋值<br>    object 变量不可以指向其他对象<br>    static final 变量  -&gt; 用于定义常量，名称一般大写</p>
+<p>public class className {<br>    public final List<employee> name = new ArrayList&lt;&gt;();//变量定义的时候指向对象</employee></p>
+<pre><code>private final int age; // primitive type 变量不可以被重新赋值
+
+public className() {
+    name = new ArrayList&lt;&gt;(); //构造函数初始化的时候指向对象
+}
+</code></pre><p>}</p>
+<p>实现不可变性：<br>    final 关键字无法保证不可变性<br>    从接口定义，类的实现上保证不可变性<br>    Collections.unmodifiableXXX (list.set…)</p>
+<p><a href="http://www.importnew.com/7553.html" target="_blank" rel="noopener">深入理解Java中的final关键字</a></p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>List（线下列表）:<br>    ArrayList，数组，插入删除慢，获取第n个元素快<br>        IntArrayList<br>        StringArrayList<br>    LinkedList，链表,插入删除快，获取第n个元素慢<br>        IntLinkedList<br>        StringLinkedList</p>
+<p>从List到List<t>:<br>    规定List中的元素只能是类型T<br>    ArrayList<integer>, ArrayList<string><br>    LinkedList<integer>, LinkedList<string></string></integer></string></integer></t></p>
+<p>一个元素类型只能是T的线下列表，所有操作的元素类型只能是T<br>ArrayList<t>, ArrayList<integer>, 实现的时候T可以是任何类型，但是告诉了用Integer类型，就只能是Integer类型，这就是泛型</integer></t></p>
+<p>语法：<br>    List<integet> list = new ArrayList&lt;&gt;(); //Java 1.7<br>    List<integet> list = LinkedList.of(1,2,3);<br>    List<integet> list = LinkedList.newEmptyList();</integet></integet></integet></p>
+<pre><code>Objects.equals(emptyIntList,
+    LinkedList.&lt;Integer&gt;newEmptyList());//&lt;Integer&gt;告诉编译器类型
+class ArrayList&lt;T&gt; {...}
+public &lt;V&gt; void printList(List&lt;V&gt; list){...}//&lt;V&gt;是提供帮助的
+</code></pre><p>Java Type Erasure:<br>    早期Java没有泛型<br>    为了兼容性，在运行时将所有泛型内容Erasure<br>    运行时:List,List<string>,List<integer> 没有区别<br>    编译器控制<br>    void <t> printList(List<t> list); //只能输出[1,2,3]<br>    void <t> printList(List<t> list, class<t> elementType);//可以输出 Integet list of:[1,2,3]<br>Covariance:<br>    ArrayList<integer> 是 List<integer> 吗？ 是的<br>    List<integer>是List<object>吗？          不是的</object></integer></integer></integer></t></t></t></t></t></integer></string></p>
+<h2 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h2><h3 id="Singleton-模式，单例模式"><a href="#Singleton-模式，单例模式" class="headerlink" title="Singleton 模式，单例模式"></a>Singleton 模式，单例模式</h3><pre><code>确保全局至多只有一个对象
+用于：构造缓慢的对象，需要统一管理的资源（数据库连接池）
+缺点：很多全局状态，线程安全性
+</code></pre><p>Singleton的创建<br>    双重锁模式<br>    作为Java类的静态变量<br>    使用框架提供的能力</p>
+<p><a href="https://my.oschina.net/dyyweb/blog/609021" target="_blank" rel="noopener">单例模式实现的5种方式：懒汉、饿汉…</a></p>
+<h3 id="变继承关系为组合关系"><a href="#变继承关系为组合关系" class="headerlink" title="变继承关系为组合关系"></a>变继承关系为组合关系</h3><pre><code>继承关系：
+    描述is-a关系
+    不要用继承关系来实现复用
+    使用设计模式实现代码复用
+</code></pre><h4 id="State-Pattern-状态模式"><a href="#State-Pattern-状态模式" class="headerlink" title="State Pattern 状态模式"></a>State Pattern 状态模式</h4><h4 id="Decorator-Pattern-装饰者模式"><a href="#Decorator-Pattern-装饰者模式" class="headerlink" title="Decorator Pattern 装饰者模式"></a>Decorator Pattern 装饰者模式</h4><p>interface Runnable{<br>    void run();<br>}<br>如何实现<br>LoggingRunnable 记日志<br>TransactionalRunnable commit rollback</p>
+<h3 id="如何创建对象"><a href="#如何创建对象" class="headerlink" title="如何创建对象"></a>如何创建对象</h3><p>使用 new 来创建对象的缺点：<br>    编译时必须决定创建哪个类的对象<br>    参数意义不明确</p>
+<h4 id="Abstract-Factory-Pattern-抽象工厂模式"><a href="#Abstract-Factory-Pattern-抽象工厂模式" class="headerlink" title="Abstract Factory Pattern  抽象工厂模式"></a>Abstract Factory Pattern  抽象工厂模式</h4><p>比较：<br>    task = new LoggingTask(new CodingTask());<br>    task = taskFactory.createCodingTask();</p>
+<h4 id="Builder-Pattern-建造者模式"><a href="#Builder-Pattern-建造者模式" class="headerlink" title="Builder Pattern 建造者模式"></a>Builder Pattern 建造者模式</h4><p>往往配合不可变对象使用<br>比较：<br>    employee = new Employee(oldEmployee.getName(), 15000);<br>    employee = Employee.fromExisting(oldEmployee)<br>            .withSalary(1500)<br>            .build();</p>
+<h2 id="高级知识点"><a href="#高级知识点" class="headerlink" title="高级知识点"></a>高级知识点</h2><h3 id="并行计算"><a href="#并行计算" class="headerlink" title="并行计算"></a>并行计算</h3><pre><code>将数据拆分到每个节点上            如何拆分
+每个节点并行的计算出结果           什么结果
+将结果汇总                      如何汇总
+</code></pre><p>外部排序：如何排序10G个元素</p>
+<h3 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h3><h3 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h3><h2 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h2><p>我用…技术做了…项目<br>基础知识</p>
+<p>解题：编码，算法，解决问题</p>
+<p>遇到比较难的题目，不要逃避，技术细节上深入<br>实在没有思路，让面试官多说点背景，多举点例子，面试官会有意无意透露点提示，认真聆听，推动思路拓展<br>不要直接要提示</p>
+<p>结构化，从逻辑角度分析问题，无关的干扰项剔除</p>
+<p>随时保持交流，有时会考察交流能力，问一些问题，比如对数组元素做一些操作，没说数组能不能重复</p>
+<p>提问面试官：<br>没有问题<br>介绍您所在的项目组<br>公司吸引您的地方有哪些<br>对我在下一轮中有什么建议</p>
+<p>基础知识：广度优先，在兴趣深入<br>编码能力：<br>面向对象和设计模式：尝试重构自己的代码，从用户角度</p>
+<p>1: 多线程<br>2: 集合<br>3：io流<br>4：spring aop<br>5：java 内存模型<br>6：分布式<br>7：数据库<br>8：mybatis<br>9：缓存</p>
+<h2 id="Java的内存管理"><a href="#Java的内存管理" class="headerlink" title="Java的内存管理"></a>Java的内存管理</h2><p>就是对象的分配和释放的问题<br>内存的分配是由程序完成的，内存的释放是由垃圾收集器（GC）完成的<br>不同的JVM实现者有不同的算法管理 GC ,有的是内存使用到达一定程度时，GC才开始工作，也有定时执行的，有的是中断式执行GC。</p>
+<p>但GC只能回收 无用并且不再被其他对象引用的对象占用的空间<br>从程序的主要运行对象开始检查引用链，回收遍历一遍后没有被引用的孤立对象<br><a href="http://www.importnew.com/13504.html" target="_blank" rel="noopener">Java 垃圾回收GC系列</a></p>
+<h3 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h3><h3 id="解决内存溢出"><a href="#解决内存溢出" class="headerlink" title="解决内存溢出"></a>解决内存溢出</h3><h3 id="aop"><a href="#aop" class="headerlink" title="aop"></a>aop</h3><p><a href="https://blog.csdn.net/csh624366188/article/details/7651702/" target="_blank" rel="noopener">AOP基本概念和配置详解</a></p>
+<h2 id="微服务"><a href="#微服务" class="headerlink" title="微服务"></a>微服务</h2><h3 id="理解RPC原理"><a href="#理解RPC原理" class="headerlink" title="理解RPC原理"></a><a href="https://www.cnblogs.com/LBSer/p/4853234.html" target="_blank" rel="noopener">理解RPC原理</a></h3><p><a href="http://www.laruence.com/2012/09/15/2779.html" target="_blank" rel="noopener">php rpc框架——yar</a></p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><p><a href="https://yq.aliyun.com/articles/69417?spm=5176.100240.searchblog.18.Zrbh9R" target="_blank" rel="noopener">Linux命令必知必会</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/实用/" rel="tag"># 实用</a>
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/15/软件安装/" rel="next" title="软件安装">
+                <i class="fa fa-chevron-left"></i> 软件安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/22/java基础题目/" rel="prev" title="java基础题目">
+                java基础题目 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhuxiaoyun</p>
+              <p class="site-description motion-element" itemprop="description">zhuxiaoyun</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#操作系统"><span class="nav-number">1.</span> <span class="nav-text">操作系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程-vs-线程-（Process-vs-Thread）"><span class="nav-number">1.1.</span> <span class="nav-text">进程 vs 线程 （Process vs Thread）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储"><span class="nav-number">1.2.</span> <span class="nav-text">存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络"><span class="nav-number">2.</span> <span class="nav-text">网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">3.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序设计语言"><span class="nav-number">4.</span> <span class="nav-text">程序设计语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不同角度："><span class="nav-number">4.1.</span> <span class="nav-text">不同角度：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-number">4.2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#类型基础"><span class="nav-number">4.2.1.</span> <span class="nav-text">类型基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型转换"><span class="nav-number">4.2.2.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运算符"><span class="nav-number">4.2.3.</span> <span class="nav-text">运算符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键字和保留字"><span class="nav-number">4.3.</span> <span class="nav-text">关键字和保留字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编码技巧"><span class="nav-number">5.</span> <span class="nav-text">编码技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象"><span class="nav-number">6.</span> <span class="nav-text">面向对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类与对象"><span class="nav-number">6.1.</span> <span class="nav-text">类与对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类的特殊函数"><span class="nav-number">6.2.</span> <span class="nav-text">类的特殊函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#构造函数，和类名称相同，没有返回值"><span class="nav-number">6.2.1.</span> <span class="nav-text">构造函数，和类名称相同，没有返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#equals的重写，和hashCode解析"><span class="nav-number">6.2.2.</span> <span class="nav-text">equals的重写，和hashCode解析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接口和抽象类"><span class="nav-number">6.3.</span> <span class="nav-text">接口和抽象类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#封装"><span class="nav-number">6.4.</span> <span class="nav-text">封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承"><span class="nav-number">6.5.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多态"><span class="nav-number">6.6.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重写和重载"><span class="nav-number">6.7.</span> <span class="nav-text">重写和重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变性"><span class="nav-number">6.8.</span> <span class="nav-text">不可变性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#泛型"><span class="nav-number">6.9.</span> <span class="nav-text">泛型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式"><span class="nav-number">7.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Singleton-模式，单例模式"><span class="nav-number">7.1.</span> <span class="nav-text">Singleton 模式，单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变继承关系为组合关系"><span class="nav-number">7.2.</span> <span class="nav-text">变继承关系为组合关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Pattern-状态模式"><span class="nav-number">7.2.1.</span> <span class="nav-text">State Pattern 状态模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Decorator-Pattern-装饰者模式"><span class="nav-number">7.2.2.</span> <span class="nav-text">Decorator Pattern 装饰者模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何创建对象"><span class="nav-number">7.3.</span> <span class="nav-text">如何创建对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Abstract-Factory-Pattern-抽象工厂模式"><span class="nav-number">7.3.1.</span> <span class="nav-text">Abstract Factory Pattern  抽象工厂模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Builder-Pattern-建造者模式"><span class="nav-number">7.3.2.</span> <span class="nav-text">Builder Pattern 建造者模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#高级知识点"><span class="nav-number">8.</span> <span class="nav-text">高级知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并行计算"><span class="nav-number">8.1.</span> <span class="nav-text">并行计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多线程"><span class="nav-number">8.2.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源管理"><span class="nav-number">8.3.</span> <span class="nav-text">资源管理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自我介绍"><span class="nav-number">9.</span> <span class="nav-text">自我介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java的内存管理"><span class="nav-number">10.</span> <span class="nav-text">Java的内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存溢出"><span class="nav-number">10.1.</span> <span class="nav-text">内存溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决内存溢出"><span class="nav-number">10.2.</span> <span class="nav-text">解决内存溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aop"><span class="nav-number">10.3.</span> <span class="nav-text">aop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务"><span class="nav-number">11.</span> <span class="nav-text">微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解RPC原理"><span class="nav-number">11.1.</span> <span class="nav-text">理解RPC原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux"><span class="nav-number">11.2.</span> <span class="nav-text">Linux</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhuxiaoyun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
