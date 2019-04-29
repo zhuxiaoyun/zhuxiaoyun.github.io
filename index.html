@@ -296,6 +296,130 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/13/hive-sql-常见问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhuxiaoyun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="诸笑云的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/13/hive-sql-常见问题/" itemprop="url">hive sql 常见问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-13T20:34:02+08:00">
+                2018-11-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="hive-NullPointerException-null"><a href="#hive-NullPointerException-null" class="headerlink" title="hive NullPointerException null"></a>hive NullPointerException null</h2><p>(<a href="https://blog.csdn.net/qq_31573519/article/details/78588042" target="_blank" rel="noopener">https://blog.csdn.net/qq_31573519/article/details/78588042</a>)<br>可能出现错误的2种原因： </p>
+<ol>
+<li>分区表未指定分区 </li>
+<li>Union all情况下，前后2段的字段名、数据类型不匹配</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/19/java-开发实用笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -413,16 +537,38 @@
 <li><p>List<map> 根据某一个字段分组</map></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, List&lt;Map&gt;&gt; dataMap = dataList.stream().collect(Collectors.groupingBy(</span><br><span class="line">                map -&gt; String.valueOf(map.get(<span class="string">"feature"</span>))));</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>List<map> 根据某一字段排序<br>(1) 排序的字段是int类型，转换一下，默认是正序排序（从小到大）</map></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">topList.sort(Comparator.comparing(</span><br><span class="line">    map -&gt; Integer.parseInt(map.get(<span class="string">"salesRanking"</span>).toString())));</span><br></pre></td></tr></table></figure>
-<p>(2) 排序的字段是int类型，倒序排序</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list.sort((map1, map2) -&gt;</span><br><span class="line">        Integer.parseInt(map2.get(<span class="string">"inStockDays"</span>).toString()) - Integer.parseInt(map1.get(<span class="string">"inStockDays"</span>).toString())</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<li><p>List<map> 根据某一字段排序<br>(1) 排序的字段是int类型，转换一下，默认是正序排序（从小到大）升序</map></p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">topList.sort(Comparator.comparing(</span><br><span class="line">    map -&gt; Integer.parseInt(map.get(<span class="string">"salesRanking"</span>).toString())));</span><br></pre></td></tr></table></figure>
+<p>(2) 排序的字段是int类型，倒序排序，降序</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list.sort((map1, map2) -&gt;</span><br><span class="line">        Integer.parseInt(map2.get(<span class="string">"inStockDays"</span>).toString()) - Integer.parseInt(map1.get(<span class="string">"inStockDays"</span>).toString())</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
 <p>(3)排序的字段是datetime类型的字符串，用DateUtils.judeMentTime判断两个时间前后（返回-1，0，1），或者转换成时间戳后相减</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list.sort((map1, map2) -&gt;</span><br><span class="line">        DateUtils.judeMentTime(map2.get(<span class="string">"inStockDate"</span>).toString(), map1.get(<span class="string">"inStockDate"</span>).toString())</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">list.sort((map1, map2) -&gt;</span><br><span class="line">        DateUtils.judeMentTime(map2.get(<span class="string">"inStockDate"</span>).toString(), map1.get(<span class="string">"inStockDate"</span>).toString())</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">judeMentTime</span><span class="params">(String firstDateStr, String sencondDateStr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (firstDateStr.equals(sencondDateStr))</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    Date firstDate = parseDate(firstDateStr);</span><br><span class="line">    Date sencondDate = parseDate(sencondDateStr);</span><br><span class="line">    <span class="keyword">if</span> (firstDate.after(sencondDate)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (firstDate.before(sencondDate)) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(4) 当map为对象时，可用静态方法获取字段，reversed()为倒序</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schoolFundsRankRows.sort(Comparator.comparing(FundsRankRowSetBO::getTotalMoney).reversed());</span><br></pre></td></tr></table></figure>
+<p>(5) 排序</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.sort(names, (p1, p2) -&gt; p1.compareTo(p2));</span><br></pre></td></tr></table></figure>
 </li>
+<li><p>取出某一字段重新组成列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list.stream().map(User::getMessage).collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表循环的几种方式<br>1、for (String str : list) {<br>2、list.foreach()<br>positionMaps.forEach((kk, vv) -&gt; {<br>3、for (int i = 0, len = list.size(); i &lt; len; i++) {<br>4、迭代器遍历</p>
+</li>
+<li><p>list移除满足条件的元素<br>JAVA中循环删除list中元素的方法总结<br>(<a href="https://www.cnblogs.com/pcheng/p/5336903.html" target="_blank" rel="noopener">https://www.cnblogs.com/pcheng/p/5336903.html</a>)</p>
+</li>
+<li><p>列表去重重新后组成新的列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firstList.stream().distinct().filter(Collectors.toList())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表过滤掉不满足条件的情况重新生成列表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; result = lines.stream()                     <span class="comment">// convert list to stream</span></span><br><span class="line">              .filter(line -&gt; !<span class="string">"ricky"</span>.equals(line))     <span class="comment">// we dont like ricky</span></span><br><span class="line">              .collect(Collectors.toList());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>多字段排序</p>
+<pre><code>Function&lt;Map, Double&gt; function = p -&gt; Double.valueOf(p.get(&quot;saasRate&quot;).toString());
+shopList.sort(Comparator.comparing(
+        function).reversed().thenComparing(
+                map -&gt; Double.valueOf(map.get(&quot;isRecommend&quot;).toString())).reversed());
+</code></pre></li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">judeMentTime</span><span class="params">(String firstDateStr, String sencondDateStr)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (firstDateStr.equals(sencondDateStr))</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    Date firstDate = parseDate(firstDateStr);</span><br><span class="line">    Date sencondDate = parseDate(sencondDateStr);</span><br><span class="line">    <span class="keyword">if</span> (firstDate.after(sencondDate)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (firstDate.before(sencondDate)) &#123;</span><br><span class="line">      <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  (4) 当map为对象时，可用静态方法获取字段，reversed()为倒序<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">schoolFundsRankRows.sort(Comparator.comparing(FundsRankRowSetBO::getTotalMoney).reversed());</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -720,6 +866,9 @@
 </ol>
 <p>例子1：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">select count(*) as cn, &apos;todayOrder&apos; as label </span><br><span class="line">    from tableName orders </span><br><span class="line">    where 1=1 and date &gt;= &apos;2018-09-26 00:00:00&apos; and date &lt;= &apos;2018-09-26 23:59:59&apos; and orders.is_test = 2 </span><br><span class="line">union </span><br><span class="line">select count(*) as cn, &apos;todayNewCarCn&apos; as label </span><br><span class="line">    from tableName orders </span><br><span class="line">    where 1=1 and date &gt;= &apos;2018-09-26 00:00:00&apos; and date &lt;= &apos;2018-09-26 23:59:59&apos; and orders.car_type = 1  and orders.is_test = 2 </span><br><span class="line">union </span><br><span class="line">select count(*) as cn, &apos;todayUsedCarCn&apos; as label </span><br><span class="line">    from tableName orders </span><br><span class="line">    where 1=1 and date &gt;= &apos;2018-09-26 00:00:00&apos; and date &lt;= &apos;2018-09-26 23:59:59&apos; and orders.car_type = 0  and orders.is_test = 2</span><br></pre></td></tr></table></figure>
+<ol>
+<li>常用的hive sql 函数总结<br>(<a href="https://www.aliyun.com/jiaocheng/1396343.html" target="_blank" rel="noopener">https://www.aliyun.com/jiaocheng/1396343.html</a>)</li>
+</ol>
 
           
         
@@ -1835,162 +1984,6 @@ public &lt;V&gt; void printList(List&lt;V&gt; list){...}//&lt;V&gt;是提供帮�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/15/软件安装/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhuxiaoyun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="诸笑云的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/15/软件安装/" itemprop="url">软件安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-15T10:25:13+08:00">
-                2018-08-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实用工具/" itemprop="url" rel="index">
-                    <span itemprop="name">实用工具</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实用工具/个人博客/" itemprop="url" rel="index">
-                    <span itemprop="name">个人博客</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="MAC-下实用工具"><a href="#MAC-下实用工具" class="headerlink" title="MAC 下实用工具"></a>MAC 下实用工具</h2><h3 id="抓包工具-Charels-破解版安装"><a href="#抓包工具-Charels-破解版安装" class="headerlink" title="抓包工具 Charels 破解版安装"></a>抓包工具 Charels 破解版安装</h3><p>1、<a href="http://www.sdifenzhou.com/charles401.html" target="_blank" rel="noopener">Charels 4.0.1 Mac 破解版</a>，来源<a href="http://www.sdifenzhou.com/" target="_blank" rel="noopener">史蒂芬周的博客</a><br>2、charles系列破解激活办法（最高charles4.2都可以激活）<br>// 适用于Charles任意版本的注册码，谁还会想要使用破解版呢。<br>// Charles 4.2目前是最新版，可用。</p>
-<p>Registered Name: <a href="https://zhile.io" target="_blank" rel="noopener">https://zhile.io</a><br>License Key: 48891cf209c6d32bf4</p>
-<p>本方法通杀charlse系列激活问题，版本官网下载即可。</p>
-<p>3、<a href="https://www.jianshu.com/p/fb2bdde5b498" target="_blank" rel="noopener">Charels 使用方法总结</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2041,7 +2034,7 @@ public &lt;V&gt; void printList(List&lt;V&gt; list){...}//&lt;V&gt;是提供帮�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2100,7 +2093,7 @@ public &lt;V&gt; void printList(List&lt;V&gt; list){...}//&lt;V&gt;是提供帮�
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
